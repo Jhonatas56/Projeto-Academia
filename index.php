@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Login</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -25,11 +25,23 @@
           <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
+                <?php
+                  if(isset($_GET['login'])){
+                    if($_GET['login'] == 'erro'){
+                      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Atenção!</strong> Email ou senha inválidos.
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>';
+                    }
+                  }
+                ?>
                 <h3 class="card-title text-left mb-3">Projeto Academia</h3>
                 <form method="post" action="essenciais/login.php">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control p_input" name="email" id="email">
+                    <input type="email" class="form-control" name="email" id="email">
                   </div>
                   <div class="form-group">
                     <label>Senha</label>
@@ -38,7 +50,6 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                   </div>
-                  <p class="sign-up">Esqueceu a senha?<a href="#"> Recupere aqui </a></p>
                 </form>
               </div>
             </div>

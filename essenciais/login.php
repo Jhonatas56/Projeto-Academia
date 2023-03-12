@@ -15,16 +15,19 @@
       $linha = $consulta -> fetch_array(MYSQLI_ASSOC);
       
       //Testa o cargo para ver se é um gerente, educador físico ou aluno
-      if($linha['cargo'] = 'G'){
+      if($linha['cargo'] == 'G'){
         header('Location: ../admin.php');
       }
-      else if($linha['cargo'] = 'E'){
+      
+      if($linha['cargo'] == 'E'){
         header('Location: ../educador.php');
-      } else {
+      }
+      
+      if($linha['cargo'] == 'A'){
         header('Location: ../aluno.php');
       }
 
-    } 
+    }
     else {
       header('Location: ../index.php?login=erro'); 
     }
