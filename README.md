@@ -1,2 +1,2 @@
 # Projeto Academia
- Repositório do projeto da disciplina de Laboratório de Hardware
+ Repositório do projeto da disciplina de Laboratório Web
