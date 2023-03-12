@@ -26,14 +26,14 @@
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">Projeto Academia</h3>
-                <form>
+                <form method="post" action="essenciais/login.php">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control p_input">
+                    <input type="email" class="form-control p_input" name="email" id="email">
                   </div>
                   <div class="form-group">
                     <label>Senha</label>
-                    <input type="text" class="form-control p_input">
+                    <input type="password" class="form-control p_input" name="senha" id="senha">
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
