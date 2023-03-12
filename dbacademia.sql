@@ -21,8 +21,8 @@ USE `dbacademia`;
 
 -- Copiando estrutura para tabela dbacademia.tbaluno
 CREATE TABLE IF NOT EXISTS `tbaluno` (
-  `idaluno` int(11) unsigned NOT NULL,
-  `idusu` int(11) unsigned NOT NULL,
+  `idaluno` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `idusu` int(11) unsigned DEFAULT NULL,
   `nome` varchar(100) NOT NULL,
   `sexo` char(1) NOT NULL,
   `data_nasc` date NOT NULL,
@@ -30,10 +30,9 @@ CREATE TABLE IF NOT EXISTS `tbaluno` (
   `bairro` varchar(50) NOT NULL,
   `rua` varchar(100) NOT NULL,
   `numero_casa` int(5) NOT NULL,
-  `Coluna 9` int(11) DEFAULT NULL,
   PRIMARY KEY (`idaluno`),
-  KEY `fk_usualuno` (`idusu`),
-  CONSTRAINT `fk_usualuno` FOREIGN KEY (`idusu`) REFERENCES `tbusu` (`idusu`)
+  KEY `fk_usu` (`idusu`),
+  CONSTRAINT `fk_usu` FOREIGN KEY (`idusu`) REFERENCES `tbusu` (`idusu`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Copiando dados para a tabela dbacademia.tbaluno: ~0 rows (aproximadamente)
@@ -41,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `tbaluno` (
 -- Copiando estrutura para tabela dbacademia.tbavaliacao
 CREATE TABLE IF NOT EXISTS `tbavaliacao` (
   `idava` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `idaluno` int(11) unsigned NOT NULL,
-  `ideducador` int(11) unsigned NOT NULL,
-  `idgrupo` int(11) unsigned NOT NULL,
+  `idaluno` int(11) unsigned DEFAULT NULL,
+  `ideducador` int(11) unsigned DEFAULT NULL,
+  `idgrupo` int(11) unsigned DEFAULT NULL,
   `datava` date NOT NULL,
   `horaava` time NOT NULL,
   `med_braco` int(3) NOT NULL,
@@ -64,23 +63,23 @@ CREATE TABLE IF NOT EXISTS `tbavaliacao` (
 
 -- Copiando estrutura para tabela dbacademia.tbeducador
 CREATE TABLE IF NOT EXISTS `tbeducador` (
-  `ideducador` int(11) unsigned NOT NULL,
-  `idusu` int(11) unsigned NOT NULL,
+  `ideducador` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `idusu` int(11) unsigned DEFAULT NULL,
   `nome` varchar(50) NOT NULL,
   `sexo` char(1) NOT NULL,
   `data_nasc` date NOT NULL,
   `cpf` varchar(14) NOT NULL,
   PRIMARY KEY (`ideducador`),
-  KEY `fk_usueducador` (`idusu`),
-  CONSTRAINT `fk_usueducador` FOREIGN KEY (`idusu`) REFERENCES `tbusu` (`idusu`)
+  KEY `fk_usu2` (`idusu`),
+  CONSTRAINT `fk_usu2` FOREIGN KEY (`idusu`) REFERENCES `tbusu` (`idusu`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Copiando dados para a tabela dbacademia.tbeducador: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela dbacademia.tbexercicio
 CREATE TABLE IF NOT EXISTS `tbexercicio` (
-  `idexercicio` int(11) unsigned NOT NULL,
-  `idgrupo` int(11) unsigned NOT NULL,
+  `idexercicio` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `idgrupo` int(11) unsigned DEFAULT NULL,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`idexercicio`),
   KEY `fk_grupo2` (`idgrupo`),
@@ -92,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `tbexercicio` (
 -- Copiando estrutura para tabela dbacademia.tbficha
 CREATE TABLE IF NOT EXISTS `tbficha` (
   `idficha` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `idava` int(11) unsigned NOT NULL,
+  `idava` int(11) unsigned DEFAULT NULL,
   `datficha` date NOT NULL,
   PRIMARY KEY (`idficha`),
   KEY `fk_ava` (`idava`),
@@ -113,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `tbgrupo` (
 -- Copiando estrutura para tabela dbacademia.tbitem_ficha
 CREATE TABLE IF NOT EXISTS `tbitem_ficha` (
   `iditem_ficha` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `idficha` int(11) unsigned NOT NULL,
-  `idexercicio` int(11) unsigned NOT NULL,
+  `idficha` int(11) unsigned DEFAULT NULL,
+  `idexercicio` int(11) unsigned DEFAULT NULL,
   `serie` int(2) unsigned NOT NULL,
   `repeticoes` int(2) unsigned NOT NULL,
   `tipo_treino` char(1) NOT NULL,
@@ -129,14 +128,18 @@ CREATE TABLE IF NOT EXISTS `tbitem_ficha` (
 
 -- Copiando estrutura para tabela dbacademia.tbusu
 CREATE TABLE IF NOT EXISTS `tbusu` (
-  `idusu` int(11) unsigned NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `idusu` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
   `senha` varchar(100) NOT NULL,
-  `cargo` char(1) NOT NULL DEFAULT 'A' COMMENT 'A = Aluno, E = Educador Físico, G = Gerente(admin)',
+  `cargo` char(1) NOT NULL DEFAULT 'G' COMMENT 'G = Gerente(admin), A = Aluno, E = Educador Físico',
   PRIMARY KEY (`idusu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela dbacademia.tbusu: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela dbacademia.tbusu: ~3 rows (aproximadamente)
+INSERT INTO `tbusu` (`idusu`, `email`, `senha`, `cargo`) VALUES
+	(1, 'admin@admin.com', '123', 'G'),
+	(2, 'aluno@aluno.com', '456', 'A'),
+	(3, 'educador@edu.com', '123', 'E');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
