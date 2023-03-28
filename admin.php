@@ -102,7 +102,125 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                      <!-- Espaço para colocar o conteúdo -->
+                    <div class="col-12">
+            <?php 
+              if(isset($_GET['delete'])) {
+                if(($_GET['delete'])== 'ok'){
+                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>Atenção</strong> Usuário excluido com sucesso!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
+                }
+              }
+
+              if(isset($_GET['delete'])) {
+                if(($_GET['delete'])== 'erro'){
+                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Atenção</strong> Erro usuário não excluido!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
+                }
+              }
+            ?>
+            <?php
+                    if (isset($_GET['update'])){
+                      if(($_GET['update'])=='ok'){
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Atenção</strong> Usuário alterado com sucesso!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>';
+                      }
+                    }
+                    if(isset($_GET['update'])) {
+                      if(($_GET['update'])=='erro'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Atenção</strong> Erro ao alterar usuário!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>';
+                      }
+                    }
+                ?>
+              <form action="admin.php" method="POST">
+                 <label>Busca de usuários</label>
+                 <div class="input-group">
+                   <input class="form-control" type="text" name="texto" id="texto">
+                   <div class = "input-group-append">
+                   <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar </button>
+                </div>
+                </div>
+              </form>
+              <hr>
+              <table class="table table-bordered">
+              
+                  <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-sm btn-primary"> <i class="feather icon-printer"></i></a></p> 
+                 <tr>
+                  <th>Código</th>
+                  <th>E-mail</th>
+                  <th>Opções</th>
+                </tr>
+
+                
+                <?php
+                if (isset($_POST['texto'])){
+                  include 'banco.php';
+                  
+              //echo 'conexão ok!'
+              //recebendo variáveis por post
+            
+              $texto = $_POST ['texto'];
+
+
+              //criando uma consulta
+              $sql = "select * from tbusu where email like '%$texto%' ";
+              $consulta = $conexao -> query($sql);
+
+           if($consulta){
+              if ($consulta->num_rows > 0){
+              while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+                    echo' <tr>
+                    <td>'.$linha['idusu'].'</td>
+                    <td>'.$linha['email'].'</td>
+                    <td>
+                        <a href="altusu.php?id='.$linha['idusu'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                        <a href="deleteusu.php?id='.$linha['idusu'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>';
+              }
+              }else{
+                 
+              }
+           }
+       }
+        
+            ?>
+              </table>
+              
+          </div> 
+       </div>
+       </div>
+        </div>
+        </div>
+        <?php 
+        if(isset($_GET['login'])) {
+          if(($_GET['login'])== 'ok'){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>Olá</strong> Seja bem-vindo(a) ao sistema!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+          }
+        }
+        ?>
+      </div>
                     </div>
                   </div>
                 </div>
@@ -111,12 +229,7 @@
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
+         
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
