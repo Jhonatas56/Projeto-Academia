@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Monster Machine</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome-free/css/fontawesome.min.css"> 
+    <link rel="stylesheet" href="assets/vendors/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
@@ -43,19 +44,17 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="administrador/usuario/buscausu.php">
               <span class="menu-icon">
-                <i class="mdi mdi-account-multiple-plus"></i>
+               <i class="fa-solid fa-user"></i>
               </span>
               <span class="menu-title">Usuários</span>
-             
             </a>
-           
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="administrador/usuario/buscaaluno.php">
               <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
+                <i class="fa-solid fa-users"></i>
               </span>
               <span class="menu-title">Alunos</span>
             </a>
@@ -63,15 +62,15 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="#">
               <span class="menu-icon">
-                <i class="mdi mdi-account-card-details"></i>
+                <i class="fa-solid fa-clipboard"></i>
               </span>
               <span class="menu-title">Mátriculas</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="essenciais/sair.php">
+            <a class="nav-link" href="../../essenciais/sair.php">
               <span class="menu-icon">
-                <i class="mdi mdi-logout text-danger"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
               </span>
               <span class="menu-title">Sair</span>
             </a>
@@ -102,7 +101,13 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                      <!-- Espaço para colocar o conteúdo -->
+                    <div class="col-12">
+          </div> 
+       </div>
+       </div>
+        </div>
+        </div>
+      </div>
                     </div>
                   </div>
                 </div>
@@ -111,12 +116,7 @@
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
+         
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -127,12 +127,6 @@
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
-    <script src="assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
-    <script src="assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>

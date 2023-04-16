@@ -63,6 +63,9 @@
                     <label>Senha</label>
                     <input type="password" class="form-control p_input" name="senha" id="senha">
                   </div>
+                  <div class="form-group d-flex align-items-center justify-content-between">
+                    <a href="esqueci-senha.php" class="forgot-pass">Esqueci a senha</a>
+                  </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                   </div>
