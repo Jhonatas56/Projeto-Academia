@@ -40,21 +40,19 @@
               <span class="menu-icon">
               <i class="fa-solid fa-house"></i>
               </span>
-              <span class="menu-title">Casa</span>
+              <span class="menu-title">Início</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="buscausu.php" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="../usuario/buscausu.php">
               <span class="menu-icon">
-                <i class="fa-solid fa-user"></i>
+               <i class="fa-solid fa-user"></i>
               </span>
               <span class="menu-title">Usuários</span>
-             
             </a>
-           
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="administrador/aluno/buscaaluno.php">
+            <a class="nav-link" href="buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
               </span>
@@ -64,9 +62,9 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="#">
               <span class="menu-icon">
-                <i class="fa-solid fa-clipboard"></i>
+                <i class="fa-solid fa-people-group"></i>
               </span>
-              <span class="menu-title">Mátriculas</span>
+              <span class="menu-title">Educadores</span>
             </a>
           </li>
           <li class="nav-item menu-items">

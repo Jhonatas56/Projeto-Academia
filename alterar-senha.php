@@ -28,6 +28,7 @@
 
       $sql = "UPDATE tbusu SET senha='$senha' WHERE email='$email'";
       $consulta = $conexao -> query($sql);
+      session_destroy();
     }
   }
 ?>

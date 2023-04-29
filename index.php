@@ -25,34 +25,34 @@
           <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
-              <?php 
-						if(isset($_GET['login'])) {
-						if(($_GET['login'])== 'erro'){
-							echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-								<strong>Atenção</strong> E-mail ou senha inválidos
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>';
-						}
-						if(($_GET['login'])== 'semsessao'){
-							echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-							<strong>Atenção</strong> Faça login!
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-					</button>
-						</div>';
-						}
-						if(($_GET['login'])== 'logout'){
-							echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
-							<strong>Atenção</strong> Logout realizado com sucesso                                                                           !
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-					</button>
-						</div>';
-						}
-						}
-					?>
+                <?php 
+						      if(isset($_GET['login'])) {
+						        if(($_GET['login'])== 'erro'){
+							        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							        	<strong>Atenção</strong> E-mail ou senha inválidos
+							        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							        	<span aria-hidden="true">&times;</span>
+							          </button>
+						            </div>';
+						        }
+						        if(($_GET['login'])== 'semsessao'){
+						        	echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						        	<strong>Atenção</strong> Faça login!
+						          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						        	<span aria-hidden="true">&times;</span>
+					            </button>
+					            </div>';
+						        }
+						        if(($_GET['login'])== 'logout'){
+						        	echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+						        	<strong>Atenção</strong> Logout realizado com sucesso                                                                           !
+						          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+					            </button>
+					            </div>';
+						        }
+						      }
+					      ?>
                 <h3 class="card-title text-left mb-3">Projeto Academia</h3>
                 <form method="post" action="essenciais/login.php">
                   <div class="form-group">

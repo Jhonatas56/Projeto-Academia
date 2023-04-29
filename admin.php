@@ -40,7 +40,7 @@
               <span class="menu-icon">
               <i class="fa-solid fa-house"></i>
               </span>
-              <span class="menu-title">Casa</span>
+              <span class="menu-title">Início</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -60,11 +60,11 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="administrador/aluno/buscaaluno.php">
               <span class="menu-icon">
-                <i class="fa-solid fa-clipboard"></i>
+                <i class="fa-solid fa-people-group"></i>
               </span>
-              <span class="menu-title">Mátriculas</span>
+              <span class="menu-title">Educadores</span>
             </a>
           </li>
           <li class="nav-item menu-items">

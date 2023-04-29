@@ -40,7 +40,7 @@
                         <hr>
                         <h3>Se sim, aqui está o link para alterar sua senha:</h3>
                         <p>Para alterar sua senha acesse esse link:</p>
-                        <a href="http://localhost/Projeto%20Academia/alterar-senha.php?rash='.$rash.'">Clique aqui</a>
+                        <a href="http://localhost/GitHub/Projeto-Academia/alterar-senha.php?rash='.$rash.'">Clique aqui</a>
                         <hr>
                         <h5>Não foi você quem solicitou? Se não, apenas ignore esse email.</h5>
                         <hr>';
