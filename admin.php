@@ -38,9 +38,9 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="admin.php">
               <span class="menu-icon">
-                <i class="mdi mdi-home"></i>
+              <i class="fa-solid fa-house"></i>
               </span>
-              <span class="menu-title">Principal</span>
+              <span class="menu-title">Casa</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="administrador/usuario/buscaaluno.php">
+            <a class="nav-link" href="administrador/aluno/buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
               </span>

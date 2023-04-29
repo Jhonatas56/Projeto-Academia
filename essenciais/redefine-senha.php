@@ -40,7 +40,7 @@
                         <hr>
                         <h3>Se sim, aqui está o link para alterar sua senha:</h3>
                         <p>Para alterar sua senha acesse esse link:</p>
-                        <a href="http://localhost/Projeto%20Academia/esqueci-senha.php?rash='.$rash.'"></a>
+                        <a href="http://localhost/Projeto%20Academia/alterar-senha.php?rash='.$rash.'">Clique aqui</a>
                         <hr>
                         <h5>Não foi você quem solicitou? Se não, apenas ignore esse email.</h5>
                         <hr>';
@@ -48,7 +48,9 @@
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             
                 $mail->send();
+                session_start();
                 $_SESSION['rash'] = $rash;
+                $_SESSION['email'] = $email;
                 header('Location: ../esqueci-senha.php?status=send');
             } catch (Exception $e) {
                 $_SESSION['erro'] = $mail->ErroInfo;

@@ -1,6 +1,11 @@
 <?php
   include '../../essenciais/testasessao.php';
-
+  include '../../essenciais/banco.php';
+  include '../../alterar.php';
+  $id = $_GET['id'];
+  $sql = "select * from tbusu where idusu='$id'";
+  $busca = $conexao -> query($sql);
+  $linha = $busca -> fetch_array(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,7 +50,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="buscausu.php" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="fa-solid fa-user"></i>
               </span>
@@ -55,7 +60,7 @@
            
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../aluno/buscaaluno.php">
+            <a class="nav-link" href="buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
               </span>
@@ -107,32 +112,8 @@
                     <div class="col-12">
                     <div class="d-sm-flex justify-content-between">
                        <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                       <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                     </div>
-            <?php 
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Usuário excluido com sucesso!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro usuário não excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-            ?>
-            <?php
+                    <?php
                     if (isset($_GET['update'])){
                       if(($_GET['update'])=='ok'){
                         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -154,78 +135,39 @@
                       }
                     }
                 ?>
-              <form action="buscausu.php" method="POST">
-                 <center><h3>Busca de usuários</h3></center>
-                 <div class="input-group">
-                   <input class="form-control" type="text" name="texto" id="texto">
-                   <div class = "input-group-append">
-                   <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar </button>
-                </div>
-                </div>
-              </form>
-              <hr>
-              <table class="table table-bordered">
-              
-                  <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
-                 <tr>
-                  <th>Código</th>
-                  <th>E-mail</th>
-                  <th>Opções</th>
-                </tr>
 
-                
-                <?php
-                if (isset($_POST['texto'])){
-                  include '../../banco.php';
-                  
-              //echo 'conexão ok!'
-              //recebendo variáveis por post
-            
-              $texto = $_POST ['texto'];
-
-
-              //criando uma consulta
-              $sql = "select * from tbusu where email like '%$texto%' ";
-              $consulta = $conexao -> query($sql);
-
-           if($consulta){
-              if ($consulta->num_rows > 0){
-              while( $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
-                    echo' <tr>
-                    <td>'.$linha['idusu'].'</td>
-                    <td>'.$linha['email'].'</td>
-                    <td>
-                        <a href="altusu.php?id='.$linha['idusu'].'" title="Alterar Usuário" class="btn btn-md btn-primary"> <i class="fa fa-edit"></i></a>
-                        <a href="../../deleteusu.php?id='.$linha['idusu'].'" title="Excluir Usuário" class="btn btn-md btn-danger"> <i class="fa fa-trash"></i></a>
-                    </td>
-                  </tr>';
-              }
-              }else{
-                 
-              }
-           }
-       }
-        
-            ?>
-              </table>
-              
-          </div> 
-       </div>
-       </div>
-        </div>
-        </div>
-        <?php 
-        if(isset($_GET['login'])) {
-          if(($_GET['login'])== 'ok'){
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                 <strong>Olá</strong> Seja bem-vindo(a) ao sistema!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-            </button>
-          </div>';
-          }
-        }
-        ?>
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="card card-solid">
+                            <div class="card-body">
+                                <div class="row">
+                                <div class="col-12">
+                                    <form action="../../alterar.php?alt=usuario" method="POST">
+                                    <h3>Alterar dados do Usuário</h3>
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $linha['idusu']; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-mail :</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?php echo $linha['email']; ?>" placeholder="example@gmail.com">
+                                        <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="senha">Senha :</label>
+                                        <input type="password" class="form-control" id="senha" name="senha" value="<?php echo $linha['senha']; ?>" placeholder="Digite sua senha">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nome">Cargo :</label>
+                                        <input type="text" class="form-control" id="cargo" name="cargo" value="<?php echo $linha['cargo']; ?>" placeholder="Digite seu nome aqui">
+                                    </div>
+                                    <center><button type="submit" class="btn btn-success">Alterar</button></center>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </section> 
       </div>
                     </div>
                   </div>

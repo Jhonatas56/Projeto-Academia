@@ -1,6 +1,5 @@
 <?php
   include '../../essenciais/testasessao.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="buscausu.php" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="fa-solid fa-user"></i>
               </span>
@@ -55,7 +54,7 @@
            
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../aluno/buscaaluno.php">
+            <a class="nav-link" href="administrador/aluno/buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
               </span>
@@ -105,15 +104,15 @@
                   <div class="card-body">
                     <div class="row">
                     <div class="col-12">
-                    <div class="d-sm-flex justify-content-between">
-                       <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                       <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
-                    </div>
+                      <div class="d-sm-flex justify-content-between">
+                         <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
+                         <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
+                      </div>
             <?php 
               if(isset($_GET['delete'])) {
                 if(($_GET['delete'])== 'ok'){
                   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Usuário excluido com sucesso!
+                      <strong>Atenção</strong> Aluno excluido com sucesso!
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -124,7 +123,7 @@
               if(isset($_GET['delete'])) {
                 if(($_GET['delete'])== 'erro'){
                   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro usuário não excluido!
+                      <strong>Atenção</strong> Erro aluno não excluido!
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -136,7 +135,7 @@
                     if (isset($_GET['update'])){
                       if(($_GET['update'])=='ok'){
                         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Atenção</strong> Usuário alterado com sucesso!
+                            <strong>Atenção</strong> Aluno alterado com sucesso!
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -146,7 +145,7 @@
                     if(isset($_GET['update'])) {
                       if(($_GET['update'])=='erro'){
                         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Atenção</strong> Erro ao alterar usuário!
+                            <strong>Atenção</strong> Erro ao alterar usuárialuno!
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -154,8 +153,8 @@
                       }
                     }
                 ?>
-              <form action="buscausu.php" method="POST">
-                 <center><h3>Busca de usuários</h3></center>
+              <form action="buscaaluno.php" method="POST">
+                 <center><h3>Busca de alunos</h3></center>
                  <div class="input-group">
                    <input class="form-control" type="text" name="texto" id="texto">
                    <div class = "input-group-append">
@@ -166,11 +165,14 @@
               <hr>
               <table class="table table-bordered">
               
-                  <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
+                  <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                  <tr>
-                  <th>Código</th>
-                  <th>E-mail</th>
-                  <th>Opções</th>
+                  <th>Nome</th>
+                  <th>Sexo</th>
+                  <th>Data de Nascimento</th>
+                  <th>Bairro</th>
+                  <th>Rua</th>
+                  <th>N° da casa</th>
                 </tr>
 
                 
@@ -185,18 +187,25 @@
 
 
               //criando uma consulta
-              $sql = "select * from tbusu where email like '%$texto%' ";
+              $sql = "select * from tbaluno where nome like '%$texto%' ";
               $consulta = $conexao -> query($sql);
 
            if($consulta){
               if ($consulta->num_rows > 0){
-              while( $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+              while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+
+                    $data = implode("/", array_reverse(explode("-", $linha['data_nasc'])));
+
                     echo' <tr>
-                    <td>'.$linha['idusu'].'</td>
-                    <td>'.$linha['email'].'</td>
+                    <td>'.$linha['nome'].'</td>
+                    <td>'.$linha['sexo'].'</td>
+                    <td>'.$data.'</td> 
+                    <td>'.$linha['bairro'].'</td>
+                    <td>'.$linha['rua'].'</td>
+                    <td>'.$linha['numero_casa'].'</td>
                     <td>
-                        <a href="altusu.php?id='.$linha['idusu'].'" title="Alterar Usuário" class="btn btn-md btn-primary"> <i class="fa fa-edit"></i></a>
-                        <a href="../../deleteusu.php?id='.$linha['idusu'].'" title="Excluir Usuário" class="btn btn-md btn-danger"> <i class="fa fa-trash"></i></a>
+                        <a href="altaluno.php?id='.$linha['idaluno'].'" title="Alterar Aluno" class="btn btn-md btn-primary"> <i class="fa fa-edit"></i></a>
+                        <a href="../../deletealuno.php?id='.$linha['idaluno'].'" title="Excluir Aluno" class="btn btn-md btn-danger"> <i class="fa fa-trash"></i></a>
                     </td>
                   </tr>';
               }
