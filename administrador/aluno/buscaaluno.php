@@ -25,10 +25,12 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    <!-- Incluindo JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </head>
   <body>
+    <!-- Início da container-scroller -->
     <div class="container-scroller">
-      <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
           <a class="sidebar-brand brand-logo" href="index.html"><img src="../../assets/images/logo.svg" alt="logo" /></a>
@@ -77,23 +79,7 @@
           </li>
         </ul>
       </nav>
-      <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../assets/images/logo-mini.svg" alt="logo" /></a>
-          </div>
-          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-              <span class="mdi mdi-menu"></span>
-            </button>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-              <span class="mdi mdi-format-line-spacing"></span>
-            </button>
-          </div>
-        </nav>
-        <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
@@ -101,153 +87,88 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                    <div class="col-12">
-                      <div class="d-sm-flex justify-content-between">
-                         <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                         <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
-                      </div>
-            <?php 
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Aluno excluido com sucesso!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro aluno não excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-            ?>
-            <?php
-                    if (isset($_GET['update'])){
-                      if(($_GET['update'])=='ok'){
-                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Atenção</strong> Aluno alterado com sucesso!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-                      }
-                    }
-                    if(isset($_GET['update'])) {
-                      if(($_GET['update'])=='erro'){
-                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Atenção</strong> Erro ao alterar usuárialuno!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-                      }
-                    }
-                ?>
-              <form action="buscaaluno.php" method="POST">
-                 <center><h3>Busca de alunos</h3></center>
-                 <div class="input-group">
-                   <input class="form-control" type="text" name="texto" id="texto">
-                   <div class = "input-group-append">
-                   <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar </button>
-                </div>
-                </div>
-              </form>
-              <hr>
-              <table class="table table-bordered">
-              
-                  <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
-                 <tr>
-                  <th>Nome</th>
-                  <th>Sexo</th>
-                  <th>Data de Nascimento</th>
-                  <th>Bairro</th>
-                  <th>Rua</th>
-                  <th>N° da casa</th>
-                </tr>
-
-                
-                <?php
-                if (isset($_POST['texto'])){
-                  include '../../banco.php';
-                  
-              //echo 'conexão ok!'
-              //recebendo variáveis por post
-            
-              $texto = $_POST ['texto'];
-
-
-              //criando uma consulta
-              $sql = "select * from tbaluno where nome like '%$texto%' ";
-              $consulta = $conexao -> query($sql);
-
-           if($consulta){
-              if ($consulta->num_rows > 0){
-              while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
-
-                    $data = implode("/", array_reverse(explode("-", $linha['data_nasc'])));
-
-                    echo' <tr>
-                    <td>'.$linha['nome'].'</td>
-                    <td>'.$linha['sexo'].'</td>
-                    <td>'.$data.'</td> 
-                    <td>'.$linha['bairro'].'</td>
-                    <td>'.$linha['rua'].'</td>
-                    <td>'.$linha['numero_casa'].'</td>
-                    <td>
-                        <a href="altaluno.php?id='.$linha['idaluno'].'" title="Alterar Aluno" class="btn btn-md btn-primary"> <i class="fa fa-edit"></i></a>
-                        <a href="../../deletealuno.php?id='.$linha['idaluno'].'" title="Excluir Aluno" class="btn btn-md btn-danger"> <i class="fa fa-trash"></i></a>
-                    </td>
-                  </tr>';
-              }
-              }else{
-                 
-              }
-           }
-       }
-        
-            ?>
-              </table>
-              
-          </div> 
-       </div>
-       </div>
-        </div>
-        </div>
-        <?php 
-        if(isset($_GET['login'])) {
-          if(($_GET['login'])== 'ok'){
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                 <strong>Olá</strong> Seja bem-vindo(a) ao sistema!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-            </button>
-          </div>';
-          }
-        }
-        ?>
-      </div>
+                      <div class="col-12">
+                        <div class="d-sm-flex justify-content-between">
+                          <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
+                          <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
+                        </div>
+                        <?php 
+                          if(isset($_GET['delete'])) {
+                            if(($_GET['delete'])== 'ok'){
+                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Atenção</strong> Aluno excluido com sucesso!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>';
+                            }
+                          }
+                          if(isset($_GET['delete'])) {
+                            if(($_GET['delete'])== 'erro'){
+                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Atenção</strong> Erro aluno não excluido!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>';
+                            }
+                          }
+                        ?>
+                        <?php
+                          if (isset($_GET['update'])){
+                            if(($_GET['update'])=='ok'){
+                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>Atenção</strong> Aluno alterado com sucesso!
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  </div>';
+                            }
+                          }
+                          if(isset($_GET['update'])) {
+                            if(($_GET['update'])=='erro'){
+                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  <strong>Atenção</strong> Erro ao alterar usuárialuno!
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  </div>';
+                            }
+                          }
+                        ?>
+                        <form action="javascript:func()" method="POST" id="formbusca">
+                          <center><h3>Busca de alunos</h3></center>
+                          <div class="input-group">
+                            <input class="form-control" type="text" name="texto" id="texto">
+                            <div class = "input-group-append">
+                              <button type="submit" class="btn btn-info" id="buscar"><i class="fa fa-search"></i> Buscar </button>
+                            </div>
+                          </div>
+                        </form>
+                        <hr>
+                        <table class="table table-bordered">
+                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
+                          <thead>
+                            <tr>
+                              <th>Nome</th>
+                              <th>Sexo</th>
+                              <th>Data de Nascimento</th>
+                              <th>Bairro</th>
+                              <th>Rua</th>
+                              <th>N° da casa</th>
+                            </tr>
+                          </thead>
+                          <tbody id="body"></tbody>
+                        </table>
+                      </div> 
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-         
-          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -270,5 +191,24 @@
     <!-- Custom js for this page -->
     <script src="../../assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <script>
+      $(document).ready(function(){
+
+        //início do submit
+        $('#formbusca').submit(function(){
+          let texto = $('#texto').val();
+          $.post('busca.php',{texto:texto}, function(retorno){
+            if(retorno != 'vazio'){
+              $('#body').html(retorno);
+            } else {
+              let html = '<tr><td colspan="8" class="text-center">Sem resultados</td></tr>';
+              $('#body').html(html);
+            }
+          })
+        })
+        //fim do submit
+
+      })
+    </script>
   </body>
 </html>

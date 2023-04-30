@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    <!-- Incluindo JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">
@@ -102,143 +104,86 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                    <div class="col-12">
-                    <div class="d-sm-flex justify-content-between">
-                       <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                       <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
-                    </div>
-            <?php 
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Usuário excluido com sucesso!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro usuário não excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-            ?>
-            <?php
-                    if (isset($_GET['update'])){
-                      if(($_GET['update'])=='ok'){
-                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Atenção</strong> Usuário alterado com sucesso!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-                      }
-                    }
-                    if(isset($_GET['update'])) {
-                      if(($_GET['update'])=='erro'){
-                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Atenção</strong> Erro ao alterar usuário!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-                      }
-                    }
-                ?>
-              <form action="buscausu.php" method="POST">
-                 <center><h3>Busca de usuários</h3></center>
-                 <div class="input-group">
-                   <input class="form-control" type="text" name="texto" id="texto">
-                   <div class = "input-group-append">
-                   <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar </button>
-                </div>
-                </div>
-              </form>
-              <hr>
-              <table class="table table-bordered">
-              
-                  <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
-                 <tr>
-                  <th>Código</th>
-                  <th>E-mail</th>
-                  <th>Opções</th>
-                </tr>
-
-                
-                <?php
-                if (isset($_POST['texto'])){
-                  include '../../banco.php';
-                  
-              //echo 'conexão ok!'
-              //recebendo variáveis por post
-            
-              $texto = $_POST ['texto'];
-
-
-              //criando uma consulta
-              $sql = "select * from tbusu where email like '%$texto%' ";
-              $consulta = $conexao -> query($sql);
-
-           if($consulta){
-              if ($consulta->num_rows > 0){
-              while( $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
-                    echo' <tr>
-                    <td>'.$linha['idusu'].'</td>
-                    <td>'.$linha['email'].'</td>
-                    <td>
-                        <a href="altusu.php?id='.$linha['idusu'].'" title="Alterar Usuário" class="btn btn-md btn-primary"> <i class="fa fa-edit"></i></a>
-                        <a href="../../deleteusu.php?id='.$linha['idusu'].'" title="Excluir Usuário" class="btn btn-md btn-danger"> <i class="fa fa-trash"></i></a>
-                    </td>
-                  </tr>';
-              }
-              }else{
-                 
-              }
-           }
-       }
-        
-            ?>
-              </table>
-              
-          </div> 
-       </div>
-       </div>
-        </div>
-        </div>
-        <?php 
-        if(isset($_GET['login'])) {
-          if(($_GET['login'])== 'ok'){
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                 <strong>Olá</strong> Seja bem-vindo(a) ao sistema!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-            </button>
-          </div>';
-          }
-        }
-        ?>
-      </div>
+                      <div class="col-12">
+                        <div class="d-sm-flex justify-content-between">
+                           <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
+                           <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
+                        </div>
+                        <?php 
+                          if(isset($_GET['delete'])) {
+                            if(($_GET['delete'])== 'ok'){
+                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>Atenção</strong> Usuário excluido com sucesso!
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>';
+                            }
+                          }
+                        
+                          if(isset($_GET['delete'])) {
+                            if(($_GET['delete'])== 'erro'){
+                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  <strong>Atenção</strong> Erro usuário não excluido!
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>';
+                            }
+                          }
+                        ?>
+                        <?php
+                          if (isset($_GET['update'])){
+                            if(($_GET['update'])=='ok'){
+                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>Atenção</strong> Usuário alterado com sucesso!
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>';
+                            }
+                          }
+                          if(isset($_GET['update'])) {
+                            if(($_GET['update'])=='erro'){
+                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  <strong>Atenção</strong> Erro ao alterar usuário!
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>';
+                            }
+                          }
+                        ?>
+                        <form action="javascript:func()" method="POST" id="formbusca">
+                           <center><h3>Busca de usuários</h3></center>
+                           <div class="input-group">
+                             <input class="form-control" type="text" name="texto" id="texto">
+                             <div class = "input-group-append">
+                             <button type="submit" class="btn btn-info" id="buscar"><i class="fa fa-search"></i> Buscar </button>
+                          </div>
+                          </div>
+                        </form>
+                        <hr>
+                        <table class="table table-bordered">
+                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
+                          <thead>
+                            <tr>
+                              <th>Código</th>
+                              <th>E-mail</th>
+                              <th>Opções</th>
+                            </tr>
+                          </thead>
+                          <tbody id="body"></tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-         
-          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -261,5 +206,25 @@
     <!-- Custom js for this page -->
     <script src="../../assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script>
+      $(document).ready(function(){
+
+        //início do submit
+        $('#formbusca').submit(function(){
+          let texto = $('#texto').val();
+          $.post('busca.php',{texto:texto}, function(retorno){
+            if(retorno != 'vazio'){
+              $('#body').html(retorno);
+            } else {
+              let html = '<tr><td colspan="3" class="text-center">Sem resultados</td></tr>';
+              $('#body').html(html);
+            }
+          })
+        })
+        //fim do submit
+
+      })
+    </script>
   </body>
 </html>
