@@ -164,7 +164,7 @@
                           </div>
                         </form>
                         <hr>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="tabelaUsu">
                           <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
                             <tr>
@@ -175,6 +175,23 @@
                           </thead>
                           <tbody id="body"></tbody>
                         </table>
+                        <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Alterar Usuário</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body" id="corpoModal"></div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-success" id="alterarUsu">Salvar Mudanças</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -206,6 +223,7 @@
     <!-- Custom js for this page -->
     <script src="../../assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
     <script>
       $(document).ready(function(){
@@ -213,17 +231,82 @@
         //início do submit
         $('#formbusca').submit(function(){
           let texto = $('#texto').val();
-          $.post('busca.php',{texto:texto}, function(retorno){
-            if(retorno != 'vazio'){
-              $('#body').html(retorno);
+          $.post('busca.php',{texto:texto}, function(retorno1){
+            if(retorno1 != 'vazio'){
+              $('#body').html(retorno1);
             } else {
               let html = '<tr><td colspan="3" class="text-center">Sem resultados</td></tr>';
               $('#body').html(html);
             }
           })
         })
-        //fim do submit
+        
+        //Início click tabelaUsu
+        $('#tabelaUsu').on('click','button',function(){
+          let acao = $(this).val();
+          //Teste para saber se vai alterar o usuário
+          if(acao == "alterar"){
+            let idusu = $(this).attr('id');
+            $.post('busca.php', {idusu:idusu}, function(retorno2){
+              if(retorno2 != 'erro'){
+                $('#corpoModal').html(retorno2);
+              } else {
+                $('#corpoModal').html(retorno2);
+              }
+            })
+            $('#abrirModal').modal('show');
 
+            //início do click alterarUsu
+            $('#alterarUsu').click(function(){
+              let id = $('#idModal').val();
+              let email = $('#emailModal').val();
+              let senha = $('#senhaModal').val();
+              let cargo = $('#cargoModal').val();
+              $.post('alterar.php',{id:id, email:email, senha:senha, cargo:cargo}, function(retorno3){
+                if(retorno3 != 'erro'){
+                  $('#abrirModal').modal('hide');
+                  swal({
+                    title: "USUÁRIO ALTERADO COM SUCESSO",
+                    text: "Atualize a página para ver as informações atualizadas",
+                    icon: "success",
+                  });
+                  //fim swal
+                }
+              })
+            }) // Fim do click alterarUsu
+          } // Fim do teste para alterar
+
+          //Teste para saber se vai excluir o usuário
+          if(acao == "deletar"){
+            swal({
+              title: "DESEJA DELETAR ESSE USUÁRIO?",
+              text: "O usuário será deletado permanentemente",
+              incon: "info",
+              buttons: ["Não","Sim"],
+              dangerMode: true,
+            })
+            .then((willInsert)=>{
+              if(willInsert){
+                let idusu = $(this).attr('id');
+                $.post('delete.php', {idusu:idusu}, function(retorno4){
+                  if(retorno4 != 'erro'){
+                    swal({
+                      title: "USUÁRIO DELETADO COM SUCESSO",
+                      text: "Atualize a página para ver as informações atualizadas",
+                      icon: "success",
+                    });
+                  } else {
+                    swal({
+                      title: "ERRO AO ALTERAR USUÁRIO",
+                      text: "Ocorreu um erro ao alterar o usuário, tente novamente",
+                      icon: "error",
+                    });
+                  }
+                })
+              }
+            })
+          }//Fim do teste para excluir
+        }) //Fim do click tabelaUsu
       })
     </script>
   </body>
