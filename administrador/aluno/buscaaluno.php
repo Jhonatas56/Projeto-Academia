@@ -27,6 +27,7 @@
     <link rel="shortcut icon" href="../../assets/images/favicon.png" />
     <!-- Incluindo JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   </head>
   <body>
     <!-- Início da container-scroller -->
@@ -92,50 +93,6 @@
                           <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
                           <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
-                        <?php 
-                          if(isset($_GET['delete'])) {
-                            if(($_GET['delete'])== 'ok'){
-                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Atenção</strong> Aluno excluido com sucesso!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>';
-                            }
-                          }
-                          if(isset($_GET['delete'])) {
-                            if(($_GET['delete'])== 'erro'){
-                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Atenção</strong> Erro aluno não excluido!
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>';
-                            }
-                          }
-                        ?>
-                        <?php
-                          if (isset($_GET['update'])){
-                            if(($_GET['update'])=='ok'){
-                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                  <strong>Atenção</strong> Aluno alterado com sucesso!
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                  </button>
-                                  </div>';
-                            }
-                          }
-                          if(isset($_GET['update'])) {
-                            if(($_GET['update'])=='erro'){
-                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                  <strong>Atenção</strong> Erro ao alterar usuárialuno!
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                  </button>
-                                  </div>';
-                            }
-                          }
-                        ?>
                         <form action="javascript:func()" method="POST" id="formbusca">
                           <center><h3>Busca de alunos</h3></center>
                           <div class="input-group">
@@ -146,7 +103,7 @@
                           </div>
                         </form>
                         <hr>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="tabelaAluno">
                           <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
                             <tr>
@@ -156,10 +113,28 @@
                               <th>Bairro</th>
                               <th>Rua</th>
                               <th>N° da casa</th>
+                              <th>Opções</th>
                             </tr>
                           </thead>
                           <tbody id="body"></tbody>
                         </table>
+                        <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Alterar Usuário</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body" id="corpoModal"></div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-success" id="alterarUsu">Salvar Mudanças</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div> 
                     </div>
                   </div>
@@ -207,7 +182,73 @@
           })
         })
         //fim do submit
+        
+        //Início click tabelaAluno
+        $('#tabelaAluno').on('click','button',function(){
+          let acao = $(this).val();
+          //Teste para saber se vai alterar o usuário
+          if(acao == "alterar"){
+            let idaluno = $(this).attr('id');
+            $.post('busca.php', {idaluno:idaluno}, function(retorno2){
+              if(retorno2 != 'erro'){
+                $('#corpoModal').html(retorno2);
+              } else {
+                $('#corpoModal').html(retorno2);
+              }
+            })
+            $('#abrirModal').modal('show');
 
+            //início do click alterarUsu
+            $('#alterarUsu').click(function(){
+              let id = $('#idModal').val();
+              let email = $('#emailModal').val();
+              let senha = $('#senhaModal').val();
+              let cargo = $('#cargoModal').val();
+              $.post('alterar.php',{id:id, email:email, senha:senha, cargo:cargo}, function(retorno3){
+                if(retorno3 != 'erro'){
+                  $('#abrirModal').modal('hide');
+                  swal({
+                    title: "USUÁRIO ALTERADO COM SUCESSO",
+                    text: "Atualize a página para ver as informações atualizadas",
+                    icon: "success",
+                  });
+                  //fim swal
+                }
+              })
+            }) // Fim do click alterarUsu
+          } // Fim do teste para alterar
+
+          //Teste para saber se vai excluir o usuário
+          if(acao == "deletar"){
+            swal({
+              title: "DESEJA DELETAR ESSE USUÁRIO?",
+              text: "O usuário será deletado permanentemente",
+              incon: "info",
+              buttons: ["Não","Sim"],
+              dangerMode: true,
+            })
+            .then((willInsert)=>{
+              if(willInsert){
+                let idaluno = $(this).attr('id');
+                $.post('delete.php', {idaluno:idaluno}, function(retorno4){
+                  if(retorno4 != 'erro'){
+                    swal({
+                      title: "USUÁRIO DELETADO COM SUCESSO",
+                      text: "Atualize a página para ver as informações atualizadas",
+                      icon: "success",
+                    });
+                  } else {
+                    swal({
+                      title: "ERRO AO ALTERAR USUÁRIO",
+                      text: "Ocorreu um erro ao alterar o usuário, tente novamente",
+                      icon: "error",
+                    });
+                  }
+                })
+              }
+            })
+          }//Fim do teste para excluir
+        }) //Fim do click tabelaAluno
       })
     </script>
   </body>
