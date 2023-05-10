@@ -109,51 +109,6 @@
                            <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
                            <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
-                        <?php 
-                          if(isset($_GET['delete'])) {
-                            if(($_GET['delete'])== 'ok'){
-                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                  <strong>Atenção</strong> Usuário excluido com sucesso!
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>';
-                            }
-                          }
-                        
-                          if(isset($_GET['delete'])) {
-                            if(($_GET['delete'])== 'erro'){
-                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                  <strong>Atenção</strong> Erro usuário não excluido!
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>';
-                            }
-                          }
-                        ?>
-                        <?php
-                          if (isset($_GET['update'])){
-                            if(($_GET['update'])=='ok'){
-                              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                  <strong>Atenção</strong> Usuário alterado com sucesso!
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>';
-                            }
-                          }
-                          if(isset($_GET['update'])) {
-                            if(($_GET['update'])=='erro'){
-                              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                  <strong>Atenção</strong> Erro ao alterar usuário!
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>';
-                            }
-                          }
-                        ?>
                         <form action="javascript:func()" method="POST" id="formbusca">
                            <center><h3>Busca de usuários</h3></center>
                            <div class="input-group">
@@ -229,7 +184,17 @@
       $(document).ready(function(){
 
         //início do submit
-        $('#formbusca').submit(function(){
+        
+        let texto = $('#texto').val();
+        $.post('busca.php',{texto:texto}, function(retorno1){
+          if(retorno1 != 'vazio'){
+            $('#body').html(retorno1);
+          } else {
+            let html = '<tr><td colspan="3" class="text-center">Sem resultados</td></tr>';
+            $('#body').html(html);
+          }
+        })
+        $('#formbusca').change(function(){
           let texto = $('#texto').val();
           $.post('busca.php',{texto:texto}, function(retorno1){
             if(retorno1 != 'vazio'){
@@ -267,10 +232,12 @@
                   $('#abrirModal').modal('hide');
                   swal({
                     title: "USUÁRIO ALTERADO COM SUCESSO",
-                    text: "Atualize a página para ver as informações atualizadas",
                     icon: "success",
                   });
                   //fim swal
+                  setTimeout(function(){
+                    window.location.reload();
+                  }, 1000);
                 }
               })
             }) // Fim do click alterarUsu
@@ -292,9 +259,11 @@
                   if(retorno4 != 'erro'){
                     swal({
                       title: "USUÁRIO DELETADO COM SUCESSO",
-                      text: "Atualize a página para ver as informações atualizadas",
                       icon: "success",
                     });
+                    setTimeout(function(){
+                      window.location.reload();
+                    }, 1000);
                   } else {
                     swal({
                       title: "ERRO AO ALTERAR USUÁRIO",
