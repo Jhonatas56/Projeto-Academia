@@ -260,6 +260,7 @@
                     swal({
                       title: "USUÁRIO DELETADO COM SUCESSO",
                       icon: "success",
+                      buttons: false,
                     });
                     setTimeout(function(){
                       window.location.reload();
