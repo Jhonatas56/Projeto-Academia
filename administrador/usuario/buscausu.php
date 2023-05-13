@@ -107,7 +107,6 @@
                       <div class="col-12">
                         <div class="d-sm-flex justify-content-between">
                            <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                           <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">
                            <center><h3>Busca de usuários</h3></center>
@@ -233,11 +232,12 @@
                   swal({
                     title: "USUÁRIO ALTERADO COM SUCESSO",
                     icon: "success",
+                    buttons: false,
                   });
                   //fim swal
                   setTimeout(function(){
                     window.location.reload();
-                  }, 1000);
+                  }, 1500);
                 }
               })
             }) // Fim do click alterarUsu
@@ -264,7 +264,7 @@
                     });
                     setTimeout(function(){
                       window.location.reload();
-                    }, 1000);
+                    }, 1500);
                   } else {
                     swal({
                       title: "ERRO AO ALTERAR USUÁRIO",

@@ -58,6 +58,14 @@
           <label for="bairroModal">Bairro :</label>
           <input type="text" class="form-control" id="bairroModal" name="bairroModal" value="'.$linha['bairro'].'">
         </div>
+        <div class="form-group">
+          <label for="bairroModal">Rua :</label>
+          <input type="text" class="form-control" id="ruaModal" name="ruaModal" value="'.$linha['rua'].'">
+        </div>
+        <div class="form-group">
+          <label for="numcasaModal">Bairro :</label>
+          <input type="text" class="form-control" id="numcasaModal" name="numcasaModal" value="'.$linha['num_casa'].'">
+        </div>
         </form>';
       } else {
         echo "erro";
