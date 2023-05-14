@@ -91,7 +91,7 @@
                       <div class="col-12">
                         <div class="d-sm-flex justify-content-between">
                           <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                          <a href="cadusu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
+                          <a href="cadaluno.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">
                           <center><h3>Busca de alunos</h3></center>
