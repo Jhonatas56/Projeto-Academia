@@ -4,24 +4,25 @@
     $texto = $_POST ['texto'];
   
     //criando uma consulta
-    $sql = "select * from tbaluno where nome like '%$texto%' ";
+    $sql = "select * from tbeducador where nome like '%$texto%' ";
     $consulta = $conexao -> query($sql);
     
     if($consulta){
       if ($consulta->num_rows > 0){
         while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+          if($linha['sexo']=='M'){
+            $sexo = "Maculino";
+          } else {
+            $sexo = "Feminino";
+          }
           //coloca a data em formato brasileiro
           $data = implode("/", array_reverse(explode("-", $linha['data_nasc'])));
-          echo' <tr>
+          echo' <tr class="text-center">
                 <td>'.$linha['nome'].'</td>
-                <td>'.$linha['sexo'].'</td>
-                <td>'.$data.'</td> 
-                <td>'.$linha['bairro'].'</td>
-                <td>'.$linha['rua'].'</td>
-                <td>'.$linha['numero_casa'].'</td>
+                <td>'.$sexo.'</td>
+                <td>'.$data.'</td>
                 <td>
-                    <button title="Alterar Aluno" class="btn btn-md btn-primary" value="alterar" id="'.$linha['idaluno'].'"> <i class="fa fa-edit"></i></button>
-                    <button title="Excluir Aluno" class="btn btn-md btn-danger" value="deletar" id="'.$linha['idaluno'].'"> <i class="fa fa-trash"></i></button>
+                  <button title="Excluir Educador" class="btn btn-md btn-danger" value="deletar" id="'.$linha['ideducador'].'"> <i class="fa fa-trash"></i></button>
                 </td>
                 </tr>';
         }
@@ -31,16 +32,16 @@
     }
   }
 
-  if(isset($_POST['idaluno'])){
-    $idaluno = $_POST['idaluno'];
-    $sql = "SELECT * FROM tbaluno WHERE idaluno = $idaluno";
+  /* if(isset($_POST['ideducador'])){
+    $ideducador = $_POST['ideducador'];
+    $sql = "SELECT * FROM tbeducador WHERE ideducador = $ideducador";
     $consulta = $conexao-> query($sql);
     $linha = $consulta -> fetch_array(MYSQLI_ASSOC);
     if($consulta){
       if($consulta->num_rows > 0){
         echo '<form action="javascript:func()" method="POST">
         <div class="form-group">
-            <input type="hidden" class="form-control" id="idModal" name="idModal" value="'.$linha['idaluno'].'">
+            <input type="hidden" class="form-control" id="idModal" name="idModal" value="'.$linha['ideducador'].'">
         </div>
         <div class="form-group">
           <label for="nomeModal">Nome :</label>
@@ -71,5 +72,5 @@
         echo "erro";
       }
     }
-  }
+  } */
 ?>

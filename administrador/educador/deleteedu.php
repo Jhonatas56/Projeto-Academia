@@ -1,17 +1,17 @@
 <?php
 
-$id = $_GET['id'];
+$ideducador = $_POST['ideducador'];
 
-include('banco.php');
+include '../../banco.php';
 
-$sql = "delete from tbaluno where idaluno = $id";
+$sql = "delete from tbeducador where ideducador = $ideducador";
 
 $delete = $conexao->query($sql);
 
-if($delete == true){
-    header('location: buscaaluno.php?delete=ok');
+if($delete){
+    echo('sucesso');
 }else{
-    header('location: buscaaluno.php?delete=erro');
+    echo('erro');
 }
 
 ?>

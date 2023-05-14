@@ -46,7 +46,7 @@
               <span class="menu-title">Início</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          <li class="nav-item menu-items active">
             <a class="nav-link" href="buscausu.php">
               <span class="menu-icon">
                <i class="fa-solid fa-user"></i>
@@ -109,7 +109,7 @@
                            <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">
-                           <center><h3>Busca de usuários</h3></center>
+                           <center><h3>BUSCA DE USUÁRIOS</h3></center>
                            <div class="input-group">
                              <input class="form-control" type="text" name="texto" id="texto">
                              <div class = "input-group-append">
@@ -118,13 +118,13 @@
                           </div>
                         </form>
                         <hr>
-                        <table class="table table-bordered" id="tabelaUsu">
+                        <table class="table table-bordered text-center" id="tabelaUsu">
                           <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
                             <tr>
-                              <th>Código</th>
-                              <th>E-mail</th>
-                              <th>Opções</th>
+                              <th>CÓDIGO</th>
+                              <th>E-MAIL</th>
+                              <th>OPÇÕES</th>
                             </tr>
                           </thead>
                           <tbody id="body"></tbody>
@@ -260,6 +260,7 @@
                     swal({
                       title: "USUÁRIO DELETADO COM SUCESSO",
                       icon: "success",
+                      text: "Os dados foram excluídos permanentemente",
                       buttons: false,
                     });
                     setTimeout(function(){

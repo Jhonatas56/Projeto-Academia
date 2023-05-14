@@ -62,7 +62,7 @@
               <span class="menu-title">Alunos</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          <li class="nav-item menu-items active">
             <a class="nav-link" href="#">
               <span class="menu-icon">
                 <i class="fa-solid fa-people-group"></i>
@@ -93,14 +93,23 @@
                           <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
                         </div>
                         <hr>
-                        <center><h3>Cadastro de Alunos</h3></center>
+                        <center><h3>CADASTRO DE EDUCADOR FÍSICO</h3></center>
                         <form action="javascript:func()" method="POST">
                           <div class="mb-3">
                             <div class="row">
-                              <div class="col-12">
+                              <div class="col-6">
                                 <div class="form-group">
-                                  <label for="nome">Nome :</label>
+                                  <label for="nome">NOME :</label>
                                   <input type="text" class="form-control" id="nome" name="nome" placeholder="Informe o nome">
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="sexo">SEXO :</label>
+                                  <select class="form-control" id="sexo" name="sexo">
+                                    <option value="M">MASCULINO</option>
+                                    <option value="F">FEMININO</option>
+                                  </select>
                                 </div>
                               </div>
                             </div>
@@ -109,13 +118,13 @@
                             <div class="row">
                               <div class="col-6">
                                 <div class="form-group">
-                                  <label for="email">Email :</label>
+                                  <label for="email">EMAIL :</label>
                                   <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com">
                                 </div>
                               </div>
                               <div class="col-6">
                                 <div class="form-group">
-                                  <label for="senha">Senha :</label>
+                                  <label for="senha">SENHA :</label>
                                   <input type="password" class="form-control" id="senha" name="senha">
                                 </div>
                               </div>
@@ -125,7 +134,7 @@
                             <div class="row">
                               <div class="col-6">
                                 <div class="form-group">
-                                  <label for="data_nasc">Nascimento :</label>
+                                  <label for="data_nasc">NASCIMENTO :</label>
                                   <input type="date" class="form-control" id="data_nasc" name="data_nasc">
                                 </div>
                               </div>
@@ -137,44 +146,9 @@
                               </div>
                             </div>
                           </div>
-                          <div class="mb-3">
-                            <div class="row">
-                              <div class="col-6">
-                                <div class="form-group">
-                                  <label for="bairro">Bairro :</label>
-                                  <input type="text" class="form-control" id="bairro" name="bairro">
-                                </div>
-                              </div>
-                              <div class="col-6">
-                                <div class="form-group">
-                                  <label for="rua">Rua :</label>
-                                  <input type="text" class="form-control" id="rua" name="rua">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="mb-3">
-                            <div class="row">
-                              <div class="col-6">
-                                <div class="form-group">
-                                  <label for="num_casa">Numéro da Casa :</label>
-                                  <input type="text" class="form-control" id="num_casa" name="num_casa">
-                                </div>
-                              </div>
-                              <div class="col-6">
-                                <div class="form-group">
-                                  <label for="sexo">Sexo :</label>
-                                  <select class="form-control" id="sexo" name="sexo">
-                                    <option value="M">Masculino</option>
-                                    <option value="F">Feminino</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <div class="row">
                             <div class="col-12">
-                              <center><button class="btn btn-success btn-md" id="cadastrar">Cadastrar</button></center>
+                              <center><button class="btn btn-success btn-md" id="cadastrar">CADASTRAR</button></center>
                             </div>
                           </div>
                         </form>
@@ -227,7 +201,7 @@
         //Início do script de insert
         $('#cadastrar').click(function(){
           swal({
-              title: "DESEJA CADASTRAR ESSE USUÁRIO?",
+              title: "DESEJA CADASTRAR O EDUCADOR?",
               incon: "info",
               buttons: ["Não","Sim"],
               dangerMode: true,
@@ -239,20 +213,17 @@
                 let senha = $('#senha').val();
                 let data_nasc = $('#data_nasc').val();
                 let cpf = $('#cpf').val();
-                let bairro = $('#bairro').val();
-                let rua = $('#rua').val();
-                let num_casa = $('#num_casa').val();
                 let sexo = $('#sexo').val();
-                $.post('insert.php', {nome:nome, email:email, senha:senha, data_nasc:data_nasc, cpf:cpf, bairro:bairro, rua:rua, num_casa:num_casa, sexo:sexo},function(retorno){
+                $.post('insert.php', {nome:nome, email:email, senha:senha, data_nasc:data_nasc, cpf:cpf, sexo:sexo},function(retorno){
                   if(retorno != 'erro'){
                     swal({
-                      title: "ALUNO CADASTRADO COM SUCESSO",
+                      title: "EDUCADOR CADASTRADO COM SUCESSO",
                       icon: "success",
                     });
                   } else {
                     swal({
-                      title: "ERRO AO CADASTRAR USUÁRIO",
-                      text: "Ocorreu um erro ao cadastrar o aluno, tente novamente",
+                      title: "ERRO AO CADASTRAR EDUCADOR",
+                      text: "Ocorreu um erro ao cadastrar o educador, tente novamente",
                       icon: "error"
                     });
                   }

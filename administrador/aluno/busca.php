@@ -10,11 +10,16 @@
     if($consulta){
       if ($consulta->num_rows > 0){
         while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+          if($linha['sexo']=='M'){
+            $sexo = "Maculino";
+          } else {
+            $sexo = "Feminino";
+          }
           //coloca a data em formato brasileiro
           $data = implode("/", array_reverse(explode("-", $linha['data_nasc'])));
           echo' <tr>
                 <td>'.$linha['nome'].'</td>
-                <td>'.$linha['sexo'].'</td>
+                <td>'.$sexo.'</td>
                 <td>'.$data.'</td> 
                 <td>'.$linha['bairro'].'</td>
                 <td>'.$linha['rua'].'</td>

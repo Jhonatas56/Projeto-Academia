@@ -6,12 +6,9 @@
   $senha = $_POST['senha'];
   $data_nasc = $_POST['data_nasc'];
   $cpf = $_POST['cpf'];
-  $bairro = $_POST['bairro'];
-  $rua = $_POST['rua'];
-  $num_casa = $_POST['num_casa'];
   $sexo = $_POST['sexo'];
 
-  $insertusu = "INSERT INTO tbusu VALUES (null,'$email','$senha','A')";
+  $insertusu = "INSERT INTO tbusu VALUES (null,'$email','$senha','E')";
   $addusu = $conexao -> query($insertusu);
 
   if($insertusu){
@@ -19,9 +16,9 @@
     $consultausu = $conexao -> query($selectusu);
     $result = $consultausu -> fetch_array(MYSQLI_ASSOC);
 
-    $insertaluno = "INSERT INTO tbaluno VALUES (null,'".$result['idusu']."','$nome','$sexo','$data_nasc','$cpf','$bairro','$rua','$numero_casa')";
-    $addaluno = $conexao -> query($insertaluno);
-    if($addaluno){
+    $inserteducador = "INSERT INTO tbeducador VALUES (null,'".$result['idusu']."','$nome','$sexo','$data_nasc','$cpf')";
+    $addeducador = $conexao -> query($inserteducador);
+    if($addeducador){
       echo "sucesso";
     } else {
       echo "erro";

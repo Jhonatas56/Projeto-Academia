@@ -91,10 +91,10 @@
                       <div class="col-12">
                         <div class="d-sm-flex justify-content-between">
                           <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
-                          <a href="cadaluno.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
+                          <a href="cadedu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">
-                          <center><h3>Busca de alunos</h3></center>
+                          <center><h3>BUSCAR EDUCADOR FÍSICO</h3></center>
                           <div class="input-group">
                             <input class="form-control" type="text" name="texto" id="texto">
                             <div class = "input-group-append">
@@ -103,26 +103,23 @@
                           </div>
                         </form>
                         <hr>
-                        <table class="table table-bordered" id="tabelaAluno">
-                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
+                        <table class="table table-bordered" id="tabelaEducador">
+                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Educador  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
-                            <tr>
-                              <th>bairro</th>
-                              <th>Sexo</th>
-                              <th>Data de Nascimento</th>
-                              <th>Bairro</th>
-                              <th>Rua</th>
-                              <th>N° da casa</th>
-                              <th>Opções</th>
+                            <tr class="text-center">
+                              <th>NOME</th>
+                              <th>SEXO</th>
+                              <th>DATA DE NASCIMENTO</th>
+                              <th>OPÇÕES</th>
                             </tr>
                           </thead>
                           <tbody id="body"></tbody>
                         </table>
-                        <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <!-- <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Alterar Usuário</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Alterar Educador</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -134,7 +131,7 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div> 
                     </div>
                   </div>
@@ -186,20 +183,20 @@
             if(retorno != 'vazio'){
               $('#body').html(retorno);
             } else {
-              let html = '<tr><td colspan="8" class="text-center">Sem resultados</td></tr>';
+              let html = '<tr><td colspan="4" class="text-center">Sem resultados</td></tr>';
               $('#body').html(html);
             }
           })
         })
         //fim do submit
         
-        //Início click tabelaAluno
-        $('#tabelaAluno').on('click','button',function(){
+        //Início click tabelaEducador
+        $('#tabelaEducador').on('click','button',function(){
           let acao = $(this).val();
           //Teste para saber se vai alterar o usuário
-          if(acao == "alterar"){
-            let idaluno = $(this).attr('id');
-            $.post('busca.php', {idaluno:idaluno}, function(retorno2){
+          /* if(acao == "alterar"){
+            let ideducador = $(this).attr('id');
+            $.post('busca.php', {ideducador:ideducador}, function(retorno2){
               if(retorno2 != 'erro'){
                 $('#corpoModal').html(retorno2);
               } else {
@@ -229,24 +226,25 @@
                 }
               })
             }) // Fim do click alterarAluno
-          } // Fim do teste para alterar
+          } // Fim do teste para alterar */
 
           //Teste para saber se vai excluir o usuário
           if(acao == "deletar"){
             swal({
-              title: "DESEJA DELETAR ESSE USUÁRIO?",
-              text: "O usuário será deletado permanentemente",
+              title: "DESEJA DELETAR O EDUCADOR?",
+              text: "Os dados desse usuário serão excluídos permanentemente",
               incon: "info",
               buttons: ["Não","Sim"],
               dangerMode: true,
             })
             .then((willInsert)=>{
               if(willInsert){
-                let idaluno = $(this).attr('id');
-                $.post('delete.php', {idaluno:idaluno}, function(retorno4){
-                  if(retorno4 != 'erro'){
+                let ideducador = $(this).attr('id');
+                $.post('deleteedu.php', {ideducador:ideducador}, function(retorno2){
+                  if(retorno2 != 'erro'){
                     swal({
-                      title: "ALUNO DELETADO COM SUCESSO",
+                      title: "EDUCADOR DELETADO COM SUCESSO",
+                      text: "Os dados foram excluídos permanentemente",
                       icon: "success",
                       buttons: false,
                     });
@@ -255,16 +253,16 @@
                     }, 1500);
                   } else {
                     swal({
-                      title: "ERRO AO ALTERAR USUÁRIO",
-                      text: "Ocorreu um erro ao alterar o usuário, tente novamente",
-                      icon: "error"
+                      title: "ERRO AO DELETAR O EDUCADOR",
+                      text: "Ocorreu um erro ao excluir o educador, tente novamente",
+                      icon: "error",
                     });
                   }
                 })
               }
             })
           }//Fim do teste para excluir
-        }) //Fim do click tabelaAluno
+        }) //Fim do click tabelaEducador
       })
     </script>
   </body>

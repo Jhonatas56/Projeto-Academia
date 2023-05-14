@@ -54,7 +54,7 @@
               <span class="menu-title">Usuários</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          <li class="nav-item menu-items" active>
             <a class="nav-link" href="buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
@@ -94,7 +94,7 @@
                           <a href="cadaluno.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">
-                          <center><h3>Busca de alunos</h3></center>
+                          <center><h3>BUSCA DE ALUNOS</h3></center>
                           <div class="input-group">
                             <input class="form-control" type="text" name="texto" id="texto">
                             <div class = "input-group-append">
@@ -103,17 +103,17 @@
                           </div>
                         </form>
                         <hr>
-                        <table class="table table-bordered" id="tabelaAluno">
+                        <table class="table table-bordered text-center" id="tabelaAluno">
                           <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
                             <tr>
-                              <th>bairro</th>
-                              <th>Sexo</th>
-                              <th>Data de Nascimento</th>
-                              <th>Bairro</th>
-                              <th>Rua</th>
-                              <th>N° da casa</th>
-                              <th>Opções</th>
+                              <th>NOME</th>
+                              <th>SEXO</th>
+                              <th>DATA DE NASCIMENTO</th>
+                              <th>BAIRRO</th>
+                              <th>RUA</th>
+                              <th>N° DA CASA</th>
+                              <th>OPÇÕES</th>
                             </tr>
                           </thead>
                           <tbody id="body"></tbody>
@@ -243,11 +243,12 @@
             .then((willInsert)=>{
               if(willInsert){
                 let idaluno = $(this).attr('id');
-                $.post('delete.php', {idaluno:idaluno}, function(retorno4){
+                $.post('deletealuno.php', {idaluno:idaluno}, function(retorno4){
                   if(retorno4 != 'erro'){
                     swal({
                       title: "ALUNO DELETADO COM SUCESSO",
                       icon: "success",
+                      text: "Os dados foram excluídos permanentemente",
                       buttons: false,
                     });
                     setTimeout(function(){
