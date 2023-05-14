@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="buscaaluno.php">
+            <a class="nav-link" href="../aluno/buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
               </span>

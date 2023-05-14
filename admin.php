@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="administrador/aluno/buscaaluno.php">
+            <a class="nav-link" href="administrador/educador/buscaedu.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-people-group"></i>
               </span>

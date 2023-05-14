@@ -55,14 +55,14 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="buscaaluno.php">
+            <a class="nav-link" href="../aluno/buscaaluno.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-users"></i>
               </span>
               <span class="menu-title">Alunos</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          <li class="nav-item menu-items active">
             <a class="nav-link" href="#">
               <span class="menu-icon">
                 <i class="fa-solid fa-people-group"></i>
