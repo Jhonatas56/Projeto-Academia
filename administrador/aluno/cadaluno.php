@@ -227,7 +227,7 @@
         //Início do script de insert
         $('#cadastrar').click(function(){
           swal({
-              title: "DESEJA CADASTRAR ESSE USUÁRIO?"
+              title: "DESEJA CADASTRAR ESSE USUÁRIO?",
               incon: "info",
               buttons: ["Não","Sim"],
               dangerMode: true,
@@ -243,9 +243,7 @@
                 let rua = $('#rua').val();
                 let num_casa = $('#num_casa').val();
                 let sexo = $('#sexo').val();
-                $.post('insert.php', {nome:nome, email:email, senha:senha, data_nasc:data_nasc,
-                                      cpf:cpf, bairro:bairro, rua:rua, num_casa:num_casa, sexo:sexo},
-                      function(retorno){
+                $.post('insert.php', {nome:nome, email:email, senha:senha, data_nasc:data_nasc, cpf:cpf, bairro:bairro, rua:rua, num_casa:num_casa, sexo:sexo},function(retorno){
                   if(retorno != 'erro'){
                     swal({
                       title: "ALUNO CADASTRADO COM SUCESSO",

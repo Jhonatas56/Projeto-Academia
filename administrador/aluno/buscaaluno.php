@@ -170,6 +170,16 @@
       $(document).ready(function(){
 
         //início do submit
+        let texto = $('#texto').val();
+        $.post('busca.php',{texto:texto}, function(retorno){
+          if(retorno != 'vazio'){
+            $('#body').html(retorno);
+          } else {
+            let html = '<tr><td colspan="8" class="text-center">Sem resultados</td></tr>';
+            $('#body').html(html);
+          }
+        })
+
         $('#formbusca').submit(function(){
           let texto = $('#texto').val();
           $.post('busca.php',{texto:texto}, function(retorno){
