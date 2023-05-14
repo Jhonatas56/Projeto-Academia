@@ -227,29 +227,34 @@
         //Início do script de insert
         $('#cadastrar').click(function(){
           swal({
-              title: "DESEJA DELETAR ESSE USUÁRIO?",
-              text: "O usuário será deletado permanentemente",
+              title: "DESEJA CADASTRAR ESSE USUÁRIO?"
               incon: "info",
               buttons: ["Não","Sim"],
               dangerMode: true,
             })
             .then((willInsert)=>{
               if(willInsert){
-                let idaluno = $(this).attr('id');
-                $.post('delete.php', {idaluno:idaluno}, function(retorno4){
-                  if(retorno4 != 'erro'){
+                let nome = $('#nome').val();
+                let email = $('#email').val();
+                let senha = $('#senha').val();
+                let data_nasc = $('#data_nasc').val();
+                let cpf = $('#cpf').val();
+                let bairro = $('#bairro').val();
+                let rua = $('#rua').val();
+                let num_casa = $('#num_casa').val();
+                let sexo = $('#sexo').val();
+                $.post('insert.php', {nome:nome, email:email, senha:senha, data_nasc:data_nasc,
+                                      cpf:cpf, bairro:bairro, rua:rua, num_casa:num_casa, sexo:sexo},
+                      function(retorno){
+                  if(retorno != 'erro'){
                     swal({
-                      title: "ALUNO DELETADO COM SUCESSO",
+                      title: "ALUNO CADASTRADO COM SUCESSO",
                       icon: "success",
-                      buttons: false,
                     });
-                    setTimeout(function(){
-                      window.location.reload();
-                    }, 1500);
                   } else {
                     swal({
-                      title: "ERRO AO ALTERAR USUÁRIO",
-                      text: "Ocorreu um erro ao alterar o usuário, tente novamente",
+                      title: "ERRO AO CADASTRAR USUÁRIO",
+                      text: "Ocorreu um erro ao cadastrar o aluno, tente novamente",
                       icon: "error"
                     });
                   }
