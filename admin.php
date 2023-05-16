@@ -1,5 +1,5 @@
 <?php
-  include 'essenciais/testasessao.php';
+  include 'testasessao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -68,7 +68,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../essenciais/sair.php">
+            <a class="nav-link" href="essenciais/sair.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-right-from-bracket"></i>
               </span>

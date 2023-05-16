@@ -1,5 +1,5 @@
 <?php
-  include '../../essenciais/testasessao.php';
+  include '../testasessao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
