@@ -90,7 +90,7 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="d-sm-flex justify-content-between">
-                          <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
+                          <?php include_once '../../essenciais/voltar.php';?>
                           <a href="cadedu.php" class="btn btn-md btn-success pull right"><i class="fa fa-plus"></i>&nbspNovo</a>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">

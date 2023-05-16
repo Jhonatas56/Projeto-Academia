@@ -90,7 +90,7 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="d-sm-flex justify-content-between">
-                          <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
+                          <?php include_once '../../essenciais/voltar.php';?>
                         </div>
                         <hr>
                         <center><h3>Cadastro de Alunos</h3></center>

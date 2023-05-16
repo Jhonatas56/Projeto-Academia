@@ -106,7 +106,7 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="d-sm-flex justify-content-between">
-                           <a href="principal.php" class="btn btn-md btn-primary"><i class="fa fa-reply"></i>&nbspVoltar</a>
+                          <?php include_once '../../essenciais/voltar.php';?>
                         </div>
                         <form action="javascript:func()" method="POST" id="formbusca">
                            <center><h3>BUSCA DE USUÁRIOS</h3></center>
