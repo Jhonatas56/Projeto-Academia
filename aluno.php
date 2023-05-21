@@ -48,7 +48,7 @@
               <span class="menu-icon">
                <i class="fa-solid fa-user"></i>
               </span>
-              <span class="menu-title">Usuários</span>
+              <span class="menu-title">Minha Ficha</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -98,26 +98,29 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-12">
-                      </div> 
+                    <div class="col-12">
+          </div> 
+       </div>
+       </div>
+        </div>
+        </div>
+      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
          
           <!-- partial -->
-        
+        </div>
         <!-- main-panel ends -->
-      
+      </div>
       <!-- page-body-wrapper ends -->
-
+    </div>
+    <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

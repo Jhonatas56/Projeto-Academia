@@ -81,6 +81,16 @@
         </ul>
       </nav>
       <div class="container-fluid page-body-wrapper">
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </nav>
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
