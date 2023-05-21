@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   </head>
   <body>
     <div class="container-scroller">
@@ -28,28 +30,31 @@
                 <?php 
 						      if(isset($_GET['login'])) {
 						        if(($_GET['login'])== 'erro'){
-							        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-							        	<strong>Atenção</strong> E-mail ou senha inválidos
-							        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							        	<span aria-hidden="true">&times;</span>
-							          </button>
-						            </div>';
+							        echo '<script>
+                          swal({
+                            title: "ERRO AO FAZER LOGIN",
+                            text: "Ocorreu um erro ao fazer login, tente novamente",
+                            icon: "error",
+                          });
+                        </script>';
 						        }
 						        if(($_GET['login'])== 'semsessao'){
-						        	echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-						        	<strong>Atenção</strong> Faça login!
-						          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						        	<span aria-hidden="true">&times;</span>
-					            </button>
-					            </div>';
+						        	echo '<script>
+                              swal({
+                                title: "USUÁRIO NÃO AUTENTICADO",
+                                text: "Por favor faça login!",
+                                icon: "info",
+                              });
+                            </script>';
 						        }
 						        if(($_GET['login'])== 'logout'){
-						        	echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
-						        	<strong>Atenção</strong> Logout realizado com sucesso                                                                           !
-						          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						          <span aria-hidden="true">&times;</span>
-					            </button>
-					            </div>';
+						        	echo'<script>
+                              swal({
+                                title: "LOGOUT REALIZADO COM SUCESSO",
+                                text: "O logout foi realizado",
+                                icon: "success",
+                              });
+                            </script>';
 						        }
 						      }
 					      ?>
