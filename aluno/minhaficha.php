@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   </head>
   <body>
     <div class="container-scroller">
@@ -89,6 +91,9 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
+                    <div class="d-sm-flex justify-content-between">
+                      <?php include_once '../essenciais/voltar.php';?>
+                    </div>
                     <h3 class="card-title text-center">MINHA FICHA</h3>
                     <div class="table-responsive">
                       <table class="table text-center">

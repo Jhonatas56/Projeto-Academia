@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">
@@ -94,6 +96,7 @@
                       <table class="table text-center">
                         <thead>
                           <tr>
+                            <th></th>
                             <th>EXERCÍCIO</th>
                             <th>SÉRIES</th>
                             <th>REPETIÇÕES</th>
@@ -102,8 +105,9 @@
                             <th>STATUS</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="corpoTabela">
                           <tr>
+                            <td><input type="checkbox"></td>
                             <td>TESTE</td>
                             <td>TESTE</td>
                             <td>TESTE</td>

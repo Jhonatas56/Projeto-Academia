@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">
@@ -91,6 +93,92 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-12">
+                        <div class="d-sm-flex justify-content-between">
+                          <?php include_once '../essenciais/voltar.php';?>
+                        </div>
+                        <h3 class="card-title text-center">MINHA AVALIAÇÃO</h3>
+                        <form action="">
+                          <h4 class="text-center mb-3">Informações iniciais</h4>
+                          <div class="mb-3">
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="nomeAluno">Nome:</label>
+                                  <input class="form-control" type="text" id="nomeAluno" name="nomeAluno" readonly>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="nomeEdu">Educador:</label>
+                                  <input class="form-control" type="text" id="nomeEdu" name="nomeEdu" readonly>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <div class="row">
+                              <div class="col-4">
+                                <div class="form-group">
+                                  <label for="grupo">Foco (Grupo Muscular):</label>
+                                  <input class="form-control" type="text" id="grupo" name="grupo" readonly>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="form-group">
+                                  <label for="dataAva">Data da Avaliação:</label>
+                                  <input class="form-control" type="date" id="dataAva" name="dataAva" readonly>
+                                </div>
+                              </div>
+                              <div class="col-4">
+                                <div class="form-group">
+                                  <label for="horaAva">Hora da Avaliação:</label>
+                                  <input class="form-control" type="date" id="horaAva" name="horaAva" readonly>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <h4 class="text-center mb-3">Medidas</h4>
+                          <div class="mb-3">
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="medBraco">Braço:</label>
+                                  <input type="text" class="form-control" id="medBraco" name="medBraco" readonly>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="medAntebraco">Antebraço:</label>
+                                  <input type="text" class="form-control" id="medAntebraco" name="medAntebraco" readonly>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="medCoxa">Coxa:</label>
+                                  <input type="text" class="form-control" id="medCoxa" name="medCoxa" readonly>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label for="medPanturrilha">Panturrilha:</label>
+                                  <input type="text" class="form-control" id="medPanturrilha" name="medPanturrilha" readonly>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <div class="row">
+                              <div class="col-12">
+                                <label for="objetivo">Objetivo:</label>
+                                <textarea name="objetivo" id="objetivo" cols="30" rows="10" class="form-control" readonly></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
                       </div> 
                     </div>
                   </div>

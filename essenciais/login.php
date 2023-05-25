@@ -24,6 +24,7 @@
       }
       
       if($linha['cargo'] == 'A'){
+        $_SESSION['aluno'] == $linha['idusu'];
         header('Location: ../aluno.php');
       }
 
