@@ -86,12 +86,37 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                      <div class="col-12">
-                      </div> 
+                    <h3 class="card-title text-center">SEU TREINO DIÁRIO!</h3>
+                    <div class="table-responsive">
+                      <table class="table text-center">
+                        <thead>
+                          <tr>
+                            <th>EXERCÍCIO</th>
+                            <th>SÉRIES</th>
+                            <th>REPETIÇÕES</th>
+                            <th>TIPO DE TREINO</th>
+                            <th>VISUALIZAR</th>
+                            <th>STATUS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>TESTE</td>
+                            <td>TESTE</td>
+                            <td>TESTE</td>
+                            <td>TESTE</td>
+                            <td>
+                              <button class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></button>
+                            </td>
+                            <td>
+                              <div class="badge badge-success">Concluído</d>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>

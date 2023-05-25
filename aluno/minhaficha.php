@@ -86,12 +86,22 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                      <div class="col-12">
-                      </div> 
+                    <h3 class="card-title text-center">MINHA FICHA</h3>
+                    <div class="table-responsive">
+                      <table class="table text-center">
+                        <thead>
+                          <tr>
+                            <th>EXERCÍCIO</th>
+                            <th>SÉRIE</th>
+                            <th>REPETIÇÕES</th>
+                            <th>TIPO DE TREINO</th>
+                          </tr>
+                        </thead>
+                        <tbody id="corpoTabelaFicha"></tbody>
+                      </table>
                     </div>
                   </div>
                 </div>

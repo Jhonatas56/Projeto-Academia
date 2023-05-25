@@ -99,6 +99,24 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-12">
+                        <div class="row">
+                          <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Novos Alunos</h4>
+                                <canvas id="lineChart" style="height:250px"></canvas>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Frequência Mensal</h4>
+                                <canvas id="areaChart" style="height:230px"></canvas>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div> 
                     </div>
                   </div>
@@ -122,6 +140,7 @@
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- End plugin js for this page -->
+    <script src="assets/vendors/chart.js/Chart.min.js"></script>
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
@@ -130,7 +149,7 @@
     <script src="assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/chart.js"></script>
     <!-- End custom js for this page -->
   </body>
 </html>
