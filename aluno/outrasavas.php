@@ -53,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item menu-items active">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="minhaava.php">
               <span class="menu-icon">
                 <i class="fa-solid fa-ruler"></i>
               </span>
@@ -87,21 +87,25 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="d-sm-flex justify-content-between">
-                          <?php include_once '../essenciais/voltar.php';?>
-                          <a class="btn btn-success" href="outrasavas.php">Avaliações anteriores</a>
-                        </div>
-                        <h3 class="card-title text-center">MINHA AVALIAÇÃO</h3>
-                        <form action="javascript:func()" method="post">
-                          <h4 class="text-center mb-3">Informações iniciais</h4>
-                          <div id="corpoAva"></div>
-                        </form>
-                      </div> 
+                    <div class="d-sm-flex justify-content-between">
+                      <?php include_once '../essenciais/voltar.php';?>
+                    </div>
+                    <h3 class="card-title text-center">OUTRAS AVALIAÇÕES</h3>
+                    <div class="table-responsive">
+                      <table class="table text-center">
+                        <thead>
+                          <tr>
+                            <th>EDUCADOR</th>
+                            <th>DATA DA AVALIAÇÃO</th>
+                            <th>HORÁRIO DA AVALIAÇÃO</th>
+                            <th>OPÇÕES</th>
+                          </tr>
+                        </thead>
+                        <tbody id="corpoTabelaAva"></tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -127,10 +131,10 @@
     <!-- End custom js for this page -->
     <?php echo "<script> var idaluno = ".$_SESSION['aluno']."</script>";?>
     <script>
-      let busca = "unica";
+      let busca = "todas";
       $.post('avaliacao/buscaava.php', {idaluno:idaluno, busca:busca}, function(retorno){
         if(retorno != 'erro'){
-          $('#corpoAva').html(retorno);
+          $('#corpoTabelaAva').html(retorno);
         }
       })
     </script>

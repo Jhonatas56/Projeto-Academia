@@ -24,7 +24,10 @@
       }
       
       if($linha['cargo'] == 'A'){
-        $_SESSION['aluno'] == $linha['idusu'];
+        $sql2 = "select * from tbaluno where idusu=".$linha['idusu'];
+        $consulta2 = $conexao -> query($sql2);
+        $linha2 = $consulta2 -> fetch_array(MYSQLI_ASSOC);
+        $_SESSION['aluno'] = $linha2['idaluno'];
         header('Location: ../aluno.php');
       }
 
