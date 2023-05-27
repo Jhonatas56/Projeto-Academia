@@ -115,6 +115,19 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title" id="exampleModalLabel">Minha Avaliação</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" style="color: white;">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="corpoModal"></div>
+        </div>
+      </div>
+    </div>
     <!-- plugins:js -->
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -136,6 +149,16 @@
         if(retorno != 'erro'){
           $('#corpoTabelaAva').html(retorno);
         }
+      })
+
+      $('#corpoTabelaAva').on('click','button',function(){
+        let idava = $(this).val();
+        $.post('avaliacao/buscaavaModal.php', {idava:idava}, function(retorno2){
+          if(retorno2 != 'erro'){
+            $('#corpoModal').html(retorno2);
+          }
+        })
+        $('#abrirModal').modal('show');
       })
     </script>
   </body>
