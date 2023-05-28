@@ -116,7 +116,7 @@
                         </form>
                         <hr>
                         <table class="table table-bordered text-center" id="tabelaUsu">
-                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Usuário  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
+                          
                           <thead>
                             <tr>
                               <th>CÓDIGO</th>

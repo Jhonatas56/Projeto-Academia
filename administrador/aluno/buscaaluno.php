@@ -114,7 +114,7 @@
                         </form>
                         <hr>
                         <table class="table table-bordered text-center" id="tabelaAluno">
-                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relat.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
+                          <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relatorioaluno.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
                             <tr>
                               <th>NOME</th>

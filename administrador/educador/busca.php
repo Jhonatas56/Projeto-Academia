@@ -11,7 +11,7 @@
       if ($consulta->num_rows > 0){
         while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
           if($linha['sexo']=='M'){
-            $sexo = "Maculino";
+            $sexo = "Masculino";
           } else {
             $sexo = "Feminino";
           }
