@@ -1,5 +1,20 @@
 <?php
+  include 'banco.php';
   include 'testasessao.php';
+
+  //Pegando o id da tabela de avaliação
+  $sqlava = "SELECT idava AS idavaliacao, MAX(datava) AS dataava FROM tbavaliacao WHERE idaluno = ".$_SESSION['aluno'];
+
+  $consultaava = $conexao -> query($sqlava);
+  $linhaava = $consultaava -> fetch_array(MYSQLI_ASSOC);
+  $_SESSION['idava'] = $linhaava['idavaliacao'];
+
+  //Pegando o id da tabela de ficha
+  $sqlficha = "SELECT idficha AS idficha FROM tbficha WHERE idava = ".$linhaava['idavaliacao'];
+
+  $consultaficha = $conexao -> query($sqlficha);
+  $linhaficha = $consultaficha -> fetch_array(MYSQLI_ASSOC);
+  $_SESSION['idficha'] = $linhaficha['idficha'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

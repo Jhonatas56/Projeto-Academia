@@ -25,8 +25,8 @@
                 <td>'.$linha['rua'].'</td>
                 <td>'.$linha['numero_casa'].'</td>
                 <td>
-                    <button title="Alterar Aluno" class="btn btn-md btn-primary" value="alterar" id="'.$linha['idaluno'].'"> <i class="fa fa-edit"></i></button>
-                    <button title="Excluir Aluno" class="btn btn-md btn-danger" value="deletar" id="'.$linha['idaluno'].'"> <i class="fa fa-trash"></i></button>
+                  <button title="Alterar Aluno" class="btn btn-md btn-primary" value="alterar" id="'.$linha['idaluno'].'"> <i class="fa fa-edit"></i></button>
+                  <button title="Excluir Aluno" class="btn btn-md btn-danger" value="deletar" id="'.$linha['idaluno'].'"> <i class="fa fa-trash"></i></button>
                 </td>
                 </tr>';
         }
@@ -41,6 +41,11 @@
     $sql = "SELECT * FROM tbaluno WHERE idaluno = $idaluno";
     $consulta = $conexao-> query($sql);
     $linha = $consulta -> fetch_array(MYSQLI_ASSOC);
+    if($linha['sexo']=='M'){
+      $sexo = "Masculino";
+    } else {
+      $sexo = "Feminino";
+    }
     if($consulta){
       if($consulta->num_rows > 0){
         echo '<form action="javascript:func()" method="POST">
@@ -49,27 +54,31 @@
         </div>
         <div class="form-group">
           <label for="nomeModal">Nome :</label>
-          <input type="text" class="form-control" id="nomeModal" name="nomeModal" value="'.$linha['nome'].'" disabled>
+          <input type="text" class="form-control" id="nomeModal" name="nomeModal" value="'.$linha['nome'].'">
         </div>
         <div class="form-group">
           <label for="sexoModal">Sexo :</label>
-          <input type="text" class="form-control" id="sexoModal" name="sexoModal" value="'.$linha['sexo'].'" disabled>
+          <input type="text" class="form-control" id="sexoModal" name="sexoModal" value="'.$sexo.'">
+        </div>
+        <div class="form-group">
+          <label for="cpfModal">CPF :</label>
+          <input type="text" class="form-control" id="cpfModal" name="cpfModal" value="'.$linha['cpf'].'">
         </div>
         <div class="form-group">
           <label for="dataModal">Nascimento :</label>
-          <input type="date" class="form-control" id="dataModal" name="dataModal" value="'.$linha['data_nasc'].'" disabled>
+          <input type="date" class="form-control" id="dataModal" name="dataModal" value="'.$linha['data_nasc'].'">
         </div>
         <div class="form-group">
           <label for="bairroModal">Bairro :</label>
           <input type="text" class="form-control" id="bairroModal" name="bairroModal" value="'.$linha['bairro'].'">
         </div>
         <div class="form-group">
-          <label for="bairroModal">Rua :</label>
+          <label for="ruaModal">Rua :</label>
           <input type="text" class="form-control" id="ruaModal" name="ruaModal" value="'.$linha['rua'].'">
         </div>
         <div class="form-group">
-          <label for="numcasaModal">Bairro :</label>
-          <input type="text" class="form-control" id="numcasaModal" name="numcasaModal" value="'.$linha['num_casa'].'">
+          <label for="numcasaModal">Número :</label>
+          <input type="text" class="form-control" id="numcasaModal" name="numcasaModal" value="'.$linha['numero_casa'].'">
         </div>
         </form>';
       } else {

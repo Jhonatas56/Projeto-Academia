@@ -104,7 +104,7 @@
                             <th>TIPO DE TREINO</th>
                           </tr>
                         </thead>
-                        <tbody id="corpoTabelaFicha"></tbody>
+                        <tbody id="corpoFicha"></tbody>
                       </table>
                     </div>
                   </div>
@@ -129,5 +129,13 @@
     <!-- Custom js for this page -->
     <script src="../assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <?php echo "<script> var idaluno = ".$_SESSION['aluno']."</script>";?>
+    <script>
+      $.post('ficha/buscaficha.php', {idaluno:idaluno}, function(retorno){
+        if(retorno != 'erro'){
+          $('#corpoFicha').html(retorno);
+        }
+      })
+    </script>
   </body>
 </html>

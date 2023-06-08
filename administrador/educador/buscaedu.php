@@ -125,7 +125,7 @@
                           </thead>
                           <tbody id="body"></tbody>
                         </table>
-                        <!-- <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -137,11 +137,11 @@
                               <div class="modal-body" id="corpoModal"></div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-success" id="alterarAluno">Salvar Mudanças</button>
+                                <button type="button" class="btn btn-success" id="alterarEducador">Salvar Mudanças</button>
                               </div>
                             </div>
                           </div>
-                        </div> -->
+                        </div>
                       </div> 
                     </div>
                   </div>
@@ -204,7 +204,7 @@
         $('#tabelaEducador').on('click','button',function(){
           let acao = $(this).val();
           //Teste para saber se vai alterar o usuário
-          /* if(acao == "alterar"){
+          if(acao == "alterar"){
             let ideducador = $(this).attr('id');
             $.post('busca.php', {ideducador:ideducador}, function(retorno2){
               if(retorno2 != 'erro'){
@@ -215,17 +215,23 @@
             })
             $('#abrirModal').modal('show');
 
-            //início do click alterarAluno
-            $('#alterarAluno').click(function(){
+            //início do click alterarEducador
+            $('#alterarEducador').click(function(){
               let id = $('#idModal').val();
-              let bairro = $('#bairroModal').val();
-              let rua = $('#ruaModal').val();
-              let numcasa = $('#numcasaModal').val();
-              $.post('alterar.php',{id:id, bairro:bairro, rua:rua, numcasa:numcasa}, function(retorno3){
+              let nome = $('#nomeModal').val();
+              let sexo = $('#sexoModal').val();
+              let data = $('#dataModal').val();
+              let cpf = $('#cpfModal').val();
+              if(sexo == "Masculino"){
+                sexo = "M";
+              } else {
+                sexo = "F";
+              }
+              $.post('alterar.php',{id:id, nome:nome, sexo:sexo, data:data, cpf:cpf}, function(retorno3){
                 if(retorno3 != 'erro'){
                   $('#abrirModal').modal('hide');
                   swal({
-                    title: "ALUNO ALTERADO COM SUCESSO",
+                    title: "EDUCADOR ALTERADO COM SUCESSO",
                     icon: "success",
                     buttons: false,
                   });
@@ -235,8 +241,8 @@
                   }, 1500);
                 }
               })
-            }) // Fim do click alterarAluno
-          } // Fim do teste para alterar */
+            }) // Fim do click alterarEducador
+          } // Fim do teste para alterar
 
           //Teste para saber se vai excluir o usuário
           if(acao == "deletar"){

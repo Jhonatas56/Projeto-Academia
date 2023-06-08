@@ -224,7 +224,16 @@
               let bairro = $('#bairroModal').val();
               let rua = $('#ruaModal').val();
               let numcasa = $('#numcasaModal').val();
-              $.post('alterar.php',{id:id, bairro:bairro, rua:rua, numcasa:numcasa}, function(retorno3){
+              let nome = $('#nomeModal').val();
+              let sexo = $('#sexoModal').val();
+              let data = $('#dataModal').val();
+              let cpf = $('#cpfModal').val();
+              if(sexo == "Masculino"){
+                sexo = "M";
+              } else {
+                sexo = "F";
+              }
+              $.post('alterar.php',{id:id, bairro:bairro, rua:rua, numcasa:numcasa, nome:nome, sexo:sexo, data:data, cpf:cpf}, function(retorno3){
                 if(retorno3 != 'erro'){
                   $('#abrirModal').modal('hide');
                   swal({
