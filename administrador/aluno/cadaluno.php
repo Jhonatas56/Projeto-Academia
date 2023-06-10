@@ -167,7 +167,7 @@
                             <div class="row">
                               <div class="col-6">
                                 <div class="form-group">
-                                  <label for="num_casa">Numéro da Casa :</label>
+                                  <label for="num_casa">Número da Casa :</label>
                                   <input type="text" class="form-control" id="num_casa" name="num_casa">
                                 </div>
                               </div>
