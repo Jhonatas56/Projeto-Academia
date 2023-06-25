@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Maio-2023 às 15:25
+-- Tempo de geração: 25-Jun-2023 às 06:08
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.0.25
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -163,7 +163,12 @@ INSERT INTO `tbexercicio` (`idexercicio`, `idgrupo`, `nome`) VALUES
 (42, 9, 'Elevação de Panturrilha em Pé no Smith'),
 (43, 9, 'Elevação de Panturrilha no Leg Press'),
 (44, 9, 'Elevação de panturrilha com carga em uma perna'),
-(45, 9, 'Elevação de Panturrilha Sentado');
+(45, 9, 'Elevação de Panturrilha Sentado'),
+(46, 10, 'Abdominal no Crossover'),
+(47, 10, 'Abdominal infra'),
+(48, 10, 'Prancha'),
+(49, 10, 'Abdominal Crunch'),
+(50, 10, 'Abdominal Russso');
 
 -- --------------------------------------------------------
 
@@ -209,7 +214,8 @@ INSERT INTO `tbgrupo` (`idgrupo`, `descricao`) VALUES
 (6, 'Quadríceps'),
 (7, 'Posterior de Coxa'),
 (8, 'Glúteos'),
-(9, 'Panturrilha');
+(9, 'Panturrilha'),
+(10, 'Abdômen');
 
 -- --------------------------------------------------------
 
@@ -357,7 +363,7 @@ ALTER TABLE `tbeducador`
 -- AUTO_INCREMENT de tabela `tbexercicio`
 --
 ALTER TABLE `tbexercicio`
-  MODIFY `idexercicio` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idexercicio` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de tabela `tbficha`
