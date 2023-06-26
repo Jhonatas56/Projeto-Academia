@@ -111,31 +111,18 @@
                       <table class="table text-center">
                         <thead>
                           <tr>
-                            <th></th>
                             <th>EXERCÍCIO</th>
                             <th>SÉRIES</th>
                             <th>REPETIÇÕES</th>
                             <th>TIPO DE TREINO</th>
                             <th>VISUALIZAR</th>
-                            <th>STATUS</th>
                           </tr>
                         </thead>
                         <tbody id="corpoTabela">
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>TESTE</td>
-                            <td>TESTE</td>
-                            <td>TESTE</td>
-                            <td>TESTE</td>
-                            <td>
-                              <button class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i></button>
-                            </td>
-                            <td>
-                              <div class="badge badge-success">Concluído</d>
-                            </td>
-                          </tr>
+                          
                         </tbody>
                       </table>
+                      <div class="text-center"><button class="btn btn-success" id="marcarConcluido">Marcar como concluído</button></div>
                     </div>
                   </div>
                 </div>
@@ -159,5 +146,18 @@
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script>
+      let controle = "pesquisa";
+      $.post("aluno/treinodiario.php", {controle:controle}, function(retorno){
+        $('#corpoTabela').html(retorno);
+        $('#marcarConcluido').click(function(){
+          controle = "concluido";
+          $.post("aluno/treinodiario.php", {controle:controle}, function(retorno2){
+            
+          })
+        })
+      })
+    </script>
   </body>
 </html>
