@@ -5,6 +5,7 @@
     if(isset($_POST['controle'])){
         if($_POST['controle'] == "pesquisa"){
             $sqlcontrole = "SELECT * FROM tbtreinodiario WHERE idaluno=".$_SESSION['aluno'];
+            echo $sqlcontrole;
             $consultacontrole = $conexao -> query($sqlcontrole);
             $linhaconsulta = $consultacontrole -> fetch_array(MYSQLI_ASSOC);
             if($linhaconsulta['concluido'] == "N"){

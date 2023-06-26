@@ -154,7 +154,15 @@
         $('#marcarConcluido').click(function(){
           controle = "concluido";
           $.post("aluno/treinodiario.php", {controle:controle}, function(retorno2){
-            
+            if(retorno2 != "erro"){
+              swal({
+                title: "TREINO CONCLUÍDO!",
+                text: "Seu treino foi concluído com sucesso!",
+                icon: "success"
+              }).then(() =>
+                location.reload()
+              );
+            }
           })
         })
       })
