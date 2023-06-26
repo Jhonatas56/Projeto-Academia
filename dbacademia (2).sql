@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Jun-2023 às 15:37
+-- Tempo de geração: 27-Jun-2023 às 01:34
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.1.12
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -245,27 +245,6 @@ INSERT INTO `tbitem_ficha` (`iditem_ficha`, `idficha`, `idexercicio`, `serie`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbtreinodiario`
---
-
-CREATE TABLE `tbtreinodiario` (
-  `idtreinodiario` int(11) UNSIGNED NOT NULL,
-  `idaluno` int(11) NOT NULL,
-  `tipo` char(1) NOT NULL,
-  `concluido` char(1) NOT NULL DEFAULT 'N' COMMENT 'N = Não e S= Sim',
-  `data` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Extraindo dados da tabela `tbtreinodiario`
---
-
-INSERT INTO `tbtreinodiario` (`idtreinodiario`, `idaluno`, `tipo`, `concluido`, `data`) VALUES
-(1, 3, 'A', 'S', '2023-06-12');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `tbusu`
 --
 
@@ -347,12 +326,6 @@ ALTER TABLE `tbitem_ficha`
   ADD KEY `fk_exercicio` (`idexercicio`);
 
 --
--- Índices para tabela `tbtreinodiario`
---
-ALTER TABLE `tbtreinodiario`
-  ADD PRIMARY KEY (`idtreinodiario`);
-
---
 -- Índices para tabela `tbusu`
 --
 ALTER TABLE `tbusu`
@@ -403,12 +376,6 @@ ALTER TABLE `tbgrupo`
 --
 ALTER TABLE `tbitem_ficha`
   MODIFY `iditem_ficha` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT de tabela `tbtreinodiario`
---
-ALTER TABLE `tbtreinodiario`
-  MODIFY `idtreinodiario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbusu`
