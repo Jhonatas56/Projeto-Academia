@@ -1,20 +1,6 @@
 <?php
   include 'banco.php';
   include 'testasessao.php';
-
-  //Pegando o id da tabela de avaliação
-  $sqlava = "SELECT idava AS idavaliacao, MAX(datava) AS dataava FROM tbavaliacao WHERE idaluno = ".$_SESSION['aluno'];
-
-  $consultaava = $conexao -> query($sqlava);
-  $linhaava = $consultaava -> fetch_array(MYSQLI_ASSOC);
-  $_SESSION['idava'] = $linhaava['idavaliacao'];
-
-  //Pegando o id da tabela de ficha
-  $sqlficha = "SELECT idficha AS idficha FROM tbficha WHERE idava = ".$linhaava['idavaliacao'];
-
-  $consultaficha = $conexao -> query($sqlficha);
-  $linhaficha = $consultaficha -> fetch_array(MYSQLI_ASSOC);
-  $_SESSION['idficha'] = $linhaficha['idficha'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -122,7 +108,6 @@
                           
                         </tbody>
                       </table>
-                      <div class="text-center"><button class="btn btn-success" id="marcarConcluido">Marcar como concluído</button></div>
                     </div>
                   </div>
                 </div>
@@ -146,26 +131,5 @@
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
-
-    <script>
-      let controle = "pesquisa";
-      $.post("aluno/treinodiario.php", {controle:controle}, function(retorno){
-        $('#corpoTabela').html(retorno);
-        $('#marcarConcluido').click(function(){
-          controle = "concluido";
-          $.post("aluno/treinodiario.php", {controle:controle}, function(retorno2){
-            if(retorno2 != "erro"){
-              swal({
-                title: "TREINO CONCLUÍDO!",
-                text: "Seu treino foi concluído com sucesso!",
-                icon: "success"
-              }).then(() =>
-                location.reload()
-              );
-            }
-          })
-        })
-      })
-    </script>
   </body>
 </html>
