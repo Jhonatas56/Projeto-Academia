@@ -102,6 +102,7 @@
                             <th>SÉRIE</th>
                             <th>REPETIÇÕES</th>
                             <th>TIPO DE TREINO</th>
+                            <th>VISUALIZAR</th>
                           </tr>
                         </thead>
                         <tbody id="corpoFicha"></tbody>
@@ -115,6 +116,26 @@
         </div>
       </div>
     </div>
+    <!-- Início Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title" id="tituloModal"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="corpoModal">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fim Modal -->
     <!-- plugins:js -->
     <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -134,6 +155,12 @@
       $.post('ficha/buscaficha.php', {idaluno:idaluno}, function(retorno){
         if(retorno != 'erro'){
           $('#corpoFicha').html(retorno);
+          $('#corpoFicha').on('click', 'button', function(){
+            let exercicio = $(this).val();
+            $('#modal').modal('show')
+            $('#tituloModal').text(exercicio)
+            $('#corpoModal').html(`<img src="../gifs/${exercicio}.gif">`)
+          })
         }
       })
     </script>
