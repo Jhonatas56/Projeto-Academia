@@ -20,6 +20,10 @@
       }
       
       if($linha['cargo'] == 'E'){
+        $sql3 = "select * from tbeducador where idusu=".$linha['idusu'];
+        $consulta3 = $conexao -> query($sql3);
+        $linha3 = $consulta3 -> fetch_array(MYSQLI_ASSOC);
+        $_SESSION['educador'] = $linha3['nome'];
         header('Location: ../educador.php');
       }
       

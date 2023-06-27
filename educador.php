@@ -1,3 +1,7 @@
+<?php
+
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +13,11 @@
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
+
+    <link rel="stylesheet" href="assets/vendors/fontawesome-free/css/fontawesome.min.css"> 
+    <link rel="stylesheet" href="assets/vendors/fontawesome-free/css/fontawesome.css"> 
+    <link rel="stylesheet" href="assets/vendors/fontawesome-free/css/all.min.css"> 
+
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css">
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
@@ -32,47 +41,45 @@
         </div>
         <ul class="nav">
         <li class="nav-item menu-items">
-            <a class="nav-link" href="../educador.php">
-              <span class="menu-icon">
-                <i class="mdi mdi-home"></i>
-              </span>
-              <span class="menu-title">Principal</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-account-multiple-plus"></i>
-              </span>
-              <span class="menu-title">Usuários</span>
-             
-            </a>
-           
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="educador/buscaalunos.php">
-              <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-              </span>
-              <span class="menu-title">Alunos</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
-              <span class="menu-icon">
-                <i class="mdi mdi-account-card-details"></i>
-              </span>
-              <span class="menu-title">Mátriculas</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="essenciais/sair.php">
-              <span class="menu-icon">
-                <i class="mdi mdi-logout text-danger"></i>
-              </span>
-              <span class="menu-title">Sair</span>
-            </a>
-          </li>
+                <a class="nav-link" href="educador.php">
+                    <span class="menu-icon">
+                        <i class="fa-solid fa-house"></i>
+                    </span>
+                    <span class="menu-title">Principal</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="educador/buscaalunos.php" aria-expanded="false" aria-controls="ui-basic">
+                    <span class="menu-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </span>
+                    <span class="menu-title">Alunos</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="educador/buscaava.php">
+                    <span class="menu-icon">
+                        <i class="fa fa-pie-chart"></i>
+                    </span>
+                    <span class="menu-title">Avaliações</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="educador/buscafichas.php">
+                    <span class="menu-icon">
+                        <i class="fa fa-address-card"></i>
+                    </span>
+                    <span class="menu-title">Fichas</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="essenciais/sair.php">
+                    <span class="menu-icon">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                    <span class="menu-title">Sair</span>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -99,7 +106,16 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                      <!-- Espaço para colocar o conteúdo -->
+                    <div class="rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12">
+                    <div class="callout callout-info">
+              <h5><i class="fas fa-info"></i>&nbsp; Seja bem vindo,<?php echo $_SESSION['educador']; ?></h5>
+              Sistema de Academia Monster Machine
+            </div>
+                    </div>
+                    </div>
+                </div>
                     </div>
                   </div>
                 </div>
