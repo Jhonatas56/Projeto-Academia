@@ -1,7 +1,7 @@
 <?php
     include_once '../../banco.php';
     session_start();
-    $sqlava = "SELECT idava AS idavaliacao, MAX(datava) AS dataava FROM tbavaliacao WHERE idaluno = ".$_SESSION['aluno'];
+    $sqlava = "SELECT MAX(idava) AS idavaliacao, MAX(datava) AS dataava FROM tbavaliacao WHERE idaluno = ".$_SESSION['aluno'];
 
     $consultaava = $conexao -> query($sqlava);
     $linhaava = $consultaava -> fetch_array(MYSQLI_ASSOC);
