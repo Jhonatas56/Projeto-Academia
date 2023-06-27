@@ -113,7 +113,7 @@
                           </div>
                         </form>
                         <hr>
-                        <table class="table table-bordered text-center" id="tabelaAluno">
+                        <table class="table table-bordered text-center table-responsive" id="tabelaAluno">
                           <p> <i class="nav-icon fa fa-table"></i> &nbspDados do Aluno  <a href="relatorioaluno.php" target="_blank" title="Imprimir" class="btn btn-md btn-primary"> <i class="fa fa-print"></i></a></p> 
                           <thead>
                             <tr>
@@ -175,6 +175,7 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="../../assets/js/dashboard.js"></script>
+    <script src="https://cdnjs.com/libraries/jquery.mask"></script>
     <!-- End custom js for this page -->
     <script>
       $(document).ready(function(){

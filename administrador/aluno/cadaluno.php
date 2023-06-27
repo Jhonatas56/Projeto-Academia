@@ -218,10 +218,10 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="../../assets/js/dashboard.js"></script>
+    <script src="https://cdnjs.com/libraries/jquery.mask"></script>
     <!-- End custom js for this page -->
     <script>
       $(document).ready(function(){
-
         //Início do controle de cpf
         $('#cpf').on('keyup',function(){
           let Caracteres = $('#cpf').val();
